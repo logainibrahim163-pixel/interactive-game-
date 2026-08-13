@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackbox Interactive Party Game</title>
+    <!-- مكتبة لإنشاء QR Code ديناميكي وشغال 100% -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #12002b;
+            --card-bg: #1d0a38;
+            --accent-pink: #ff2a85;
+            --accent-cyan: #00f0ff;
+            --accent-yellow: #ffe600;
+            --text-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: var(--accent-yellow);
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            color: #d1c4e9;
+            line-height: 1.6;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Rules Slide Styles */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+            text-align: right;
+        }
+
+        .rule-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-right: 4px solid var(--accent-pink);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .rule-card h3 {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .rule-card p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #eae6f8;
+        }
+
+        /* QR Code Section */
+        #qrcode {
+            background: white;
+            padding: 15px;
+            border-radius: 16px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Buttons & Controls */
+        .btn {
+            background: linear-gradient(45deg, var(--accent-pink), #b000ff);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 42, 133, 0.4);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 42, 133, 0.7);
+        }
+
+        .btn-cyan {
+            background: linear-gradient(45deg, var(--accent-cyan), #0077ff);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Player Selection Cards */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .player-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--accent-pink);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .player-card:hover {
+            background: rgba(255, 42, 133, 0.2);
+            transform: scale(1.03);
+        }
+
+        /* Input fields */
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-cyan);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .secret-box {
+            background: #2a085c;
+            border: 2px dashed var(--accent-yellow);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        
+        <!-- Slide 0: Rules & Overview (الشريحة الأولى لشرح اللعبة) -->
+        <div id="screen-intro" class="screen active">
+            <h1>🎮 مرحباً بكم في تحدي التجمعات التفاعلي!</h1>
+            <p>قبل ما نبدأ ونعرض الـ QR Code، دي تفاصيل وشروط اللعبة عشان تكسبوا:</p>
+
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3>📱 1. ربط الموبايل</h3>
+                    <p>هتمسحوا الـ QR Code بموبايلكوا، وكل واحد يختار كارت اللاعب بتاعه عشان تفتحله شاشة سرية.</p>
+                </div>
+                <div class="rule-card">
+                    <h3>🕵️‍♀️ 2. الشاشات السرية</h3>
+                    <p>كل لاعب هينزل له تحدي أو سؤال سرّي مختلف تماماً على موبايله وما حدش تاني شايفه!</p>
+                </div>
+                <div class="rule-card">
+                    <h3>💡 3. الذكاء والسرعة</h3>
+                    <p>اكتبوا إجاباتكم أو نفذوا التحدي وابعتوه فوراً للشاشة الرئيسية قبل ما الوقت يخلص.</p>
+                </div>
+                <div class="rule-card">
+                    <h3>🏆 4. شروط الفوز</h3>
+                    <p>أكتر إجابة مضحكة أو ذكية بتاخد أصوات باقي القعدة.. واللي يجمع أعلى نقط هو الفائز!</p>
+                </div>
+            </div>
+
+            <button class="btn btn-cyan" onclick="showScreen('screen-main')">يلا نبدأ اللعبة ونتصل بالـ QR Code 🚀</button>
+        </div>
+
+        <!-- Screen 1: Laptop Main Display (QR Code) -->
+        <div id="screen-main" class="screen">
+            <h1>غرفة اللعبة الجماعية 🎲</h1>
+            <p>امسحي الـ QR Code ده بموبايلك أو خلي أصحابك يمسحوه من الموبايل عشان يدخلوا الشاشة السرية!</p>
+            
+            <div id="qrcode"></div>
+
+            <p style="font-size: 0.9rem; color: #888;">(أو تقدري تضغطي على الزرار تحت لو بتجربي من نفس جهاز اللاب توب)</p>
+            <button class="btn btn-cyan" onclick="openController()">فتح شاشة التحديات السرية 📱</button>
+        </div>
+
+        <!-- Screen 2: Mobile Player Select (شاشة اختيار كارت اللاعب) -->
+        <div id="screen-select" class="screen">
+            <h1>اختر بطاقتك السرية 🕵️‍♂️</h1>
+            <p>كل لاعب يختار رقمه، وكل شاشة هتعرض تحدي مختلف كلياً!</p>
+            
+            <div class="players-grid">
+                <div class="player-card" onclick="selectRole(1)">
+                    <h2>اللاعب 1 🎭</h2>
+                    <p>انقر لإظهار التحدي السري</p>
+                </div>
+                <div class="player-card" onclick="selectRole(2)">
+                    <h2>اللاعب 2 🎨</h2>
+                    <p>انقر لإظهار التحدي السري</p>
+                </div>
+                <div class="player-card" onclick="selectRole(3)">
+                    <h2>اللاعب 3 🚀</h2>
+                    <p>انقر لإظهار التحدي السري</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Unique Secret Screen for Each Player -->
+        <div id="screen-game" class="screen">
+            <h1 id="player-title">شاشة اللاعب</h1>
+            <div class="secret-box" id="secret-content">
+                جاري تحميل التحدي الخاص بك...
+            </div>
+            
+            <input type="text" id="player-answer" placeholder="اكتب إجابتك السرية هنا...">
+            <br>
+            <button class="btn" onclick="submitAnswer()">إرسال الإجابة للشاشة الرئيسية 🚀</button>
+        </div>
+
+        <!-- Screen 4: Result Screen -->
+        <div id="screen-result" class="screen">
+            <h1>🎉 النتيجة والتصويت</h1>
+            <p id="result-text"></p>
+            <button class="btn btn-cyan" onclick="resetGame()">لعب جولة جديدة 🔄</button>
+        </div>
+
+    </div>
+
+    <script>
+        // الألغاز والتحديات السرية المختلفة لكل لاعب
+        const challenges = {
+            1: "🎭 دورك: اكتب أكتر إجابة مضحكة على السريع: 'إيه أكتر حاجة ممكن تتقال في صالة جيم وتضحك؟'",
+            2: "🎨 دورك: أنت الجاسوس! اكتب كلمة سر وهمية تخدع بيها باقي القعدة.",
+            3: "🚀 دورك: كمل الجملة دي بأغرب فكرة: 'لو صحيت لقيت نفسي ملك مصر بكره هعمل...'"
+        };
+
+        let currentRole = null;
+
+        // إنشاء QR Code ديناميكي يحتوي على رابط الصفحة نفسها
+        window.onload = function() {
+            new QRCode(document.getElementById("qrcode"), {
+                text: window.location.href,
+                width: 180,
+                height: 180,
+                colorDark : "#12002b",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        };
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function openController() {
+            showScreen('screen-select');
+        }
+
+        function selectRole(roleId) {
+            currentRole = roleId;
+            document.getElementById('player-title').innerText = `شاشة اللاعب رقم ${roleId} 📱`;
+            document.getElementById('secret-content').innerText = challenges[roleId];
+            showScreen('screen-game');
+        }
+
+        function submitAnswer() {
+            const answer = document.getElementById('player-answer').value;
+            if(!answer) {
+                alert('اكتبي إجابة الأول!');
+                return;
+            }
+            
+            document.getElementById('result-text').innerText = `اللاعب ${currentRole} بعت الإجابة دي: "${answer}"`;
+            showScreen('screen-result');
+        }
+
+        function resetGame() {
+            document.getElementById('player-answer').value = '';
+            showScreen('screen-intro');
+        }
+    </script>
+</body>
+</html>
