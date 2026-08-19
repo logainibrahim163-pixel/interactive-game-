@@ -3,13 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Lojain Mohamed | Portfolio</title>
-
     <style>
-        /* =========================================
-           COLOR PALETTE & VARIABLES
-           ========================================= */
         :root {
             --bg-dark: #293241;
             --accent: #EE6C4D;
@@ -41,10 +36,6 @@
             text-decoration: none;
             color: inherit;
         }
-
-        /* =========================================
-           NAVIGATION BAR
-           ========================================= */
 
         nav {
             background-color: var(--bg-dark);
@@ -83,10 +74,6 @@
         .nav-links a:hover {
             color: var(--accent);
         }
-
-        /* =========================================
-           HERO SECTION
-           ========================================= */
 
         .hero {
             min-height: 85vh;
@@ -158,10 +145,6 @@
             box-shadow: 15px 15px 0 var(--accent);
         }
 
-        /* =========================================
-           GENERAL SECTIONS
-           ========================================= */
-
         section {
             padding: 90px 8%;
         }
@@ -176,10 +159,6 @@
         .section-title span {
             color: var(--accent);
         }
-
-        /* =========================================
-           ABOUT SECTION
-           ========================================= */
 
         .about {
             background-color: var(--bg-offwhite);
@@ -217,10 +196,6 @@
             font-size: 14px;
             font-weight: 500;
         }
-
-        /* =========================================
-           WORK SECTION
-           ========================================= */
 
         #work {
             background-color: var(--bg-light);
@@ -264,10 +239,6 @@
             font-size: 15px;
         }
 
-        /* =========================================
-           PROJECT PAGE & GALLERIES
-           ========================================= */
-
         #project-page {
             display: none;
             min-height: 85vh;
@@ -304,7 +275,6 @@
             margin-bottom: 30px;
         }
 
-        /* Gallery Grid Layout */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -339,14 +309,12 @@
             color: var(--bg-dark);
         }
 
-        /* Default info message for categories without gallery */
         .default-info {
             font-size: 18px;
             color: var(--text-muted);
             margin-bottom: 30px;
         }
 
-        /* Game cards (Web Development gallery) */
         .game-card {
             background-color: var(--bg-offwhite);
             border-radius: 8px;
@@ -394,10 +362,6 @@
             filter: brightness(1.1);
             transform: translateY(-2px);
         }
-
-        /* =========================================
-           IMAGE LIGHTBOX MODAL
-           ========================================= */
 
         .modal {
             display: none;
@@ -454,10 +418,6 @@
             color: var(--accent);
         }
 
-        /* =========================================
-           CONTACT SECTION
-           ========================================= */
-
         .contact {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -495,10 +455,6 @@
             transform: translateY(-2px);
         }
 
-        /* =========================================
-           FOOTER
-           ========================================= */
-
         footer {
             background-color: #1e2530;
             color: rgba(255, 255, 255, 0.6);
@@ -506,10 +462,6 @@
             padding: 25px;
             font-size: 14px;
         }
-
-        /* =========================================
-           MOBILE RESPONSIVENESS
-           ========================================= */
 
         @media (max-width: 768px) {
             nav {
@@ -554,13 +506,11 @@
         }
     </style>
 </head>
-
 <body>
 
     <!-- NAVIGATION -->
     <nav>
-        <div class="logo">My Protfolio<span>.</span></div>
-
+        <div class="logo">My Portfolio<span>.</span></div>
         <ul class="nav-links">
             <li><a href="#home" onclick="showHome()">Home</a></li>
             <li><a href="#about" onclick="showHome()">About</a></li>
@@ -569,12 +519,9 @@
         </ul>
     </nav>
 
-
     <!-- HOME SECTION -->
     <div id="home-page">
-
         <section class="hero" id="home">
-
             <div class="hero-text">
                 <div class="hello">Hello! I'm</div>
                 <h1>Lojain <span>Mohamed</span></h1>
@@ -584,17 +531,12 @@
                 </p>
                 <a href="#work" class="button">Explore My Work →</a>
             </div>
-
             <div class="hero-art">🎨</div>
-
         </section>
-
 
         <!-- ABOUT ME -->
         <section class="about" id="about">
-
             <h2 class="section-title">About <span>Me</span></h2>
-
             <div class="about-box">
                 <p>
                     I am a Grade 12 student who enjoys learning and
@@ -603,7 +545,6 @@
                     I believe every new project is a chance to learn
                     something new.
                 </p>
-
                 <div class="skills">
                     <div class="skill">Graphic Design</div>
                     <div class="skill">Drawing</div>
@@ -611,100 +552,77 @@
                     <div class="skill">Creativity</div>
                 </div>
             </div>
-
         </section>
-
 
         <!-- MY WORK -->
         <section id="work">
-
             <h2 class="section-title">My <span>Work</span></h2>
-
             <div class="work-grid">
-
                 <a href="#project-page" class="work-card" onclick="showProject('Digital Art')">
                     <div class="work-icon">🎨</div>
                     <h3>Digital Art</h3>
                     <p>Creative digital artwork and visual ideas.</p>
                 </a>
-
                 <a href="#project-page" class="work-card" onclick="showProject('Web Development')">
                     <div class="work-icon">💻</div>
                     <h3>Web Development</h3>
                     <p>Simple websites made with HTML and CSS.</p>
                 </a>
-
                 <a href="#project-page" class="work-card" onclick="showProject('Drawing')">
                     <div class="work-icon">✏️</div>
                     <h3>Drawing</h3>
                     <p>Drawings and illustrations created while learning.</p>
                 </a>
-
                 <a href="#project-page" class="work-card" onclick="showProject('Creative Projects')">
                     <div class="work-icon">📖</div>
                     <h3>Creative Projects</h3>
                     <p>Personal projects where I experiment with new ideas.</p>
                 </a>
-
             </div>
-
         </section>
-
 
         <!-- CONTACT -->
         <section class="contact" id="contact">
-
             <h2 class="section-title">Let's <span>Connect</span></h2>
             <p>Want to see more of my work? Find me on social media!</p>
-
             <div class="social-links">
                 <a class="social" href="https://www.facebook.com/share/1Lgq4PhDaz/" target="_blank">Facebook</a>
                 <a class="social" href="https://www.instagram.com/palitraa_?igsh=ZjVnam05bWRvNXF3" target="_blank">Instagram</a>
             </div>
-
         </section>
-
     </div>
-
 
     <!-- PROJECT INFORMATION PAGE -->
     <section id="project-page">
-
         <div class="message-box">
             <div class="big-icon" id="project-icon">🎨</div>
             <h2 id="project-title">Digital Art</h2>
-            
             <p class="message-heading" id="project-subtitle">here you can see my work in Digital art</p>
 
             <!-- Digital Art Gallery -->
             <div id="digital-art-gallery" class="gallery-grid" style="display: none;">
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="Free_Apple_iMac_PSD_Mockup_01.jpg" alt="Sunrise Artwork Mockup">
+                    <img src="./Free_Apple_iMac_PSD_Mockup_01.jpg" alt="Sunrise Artwork Mockup">
                     <p>Sunrise Artwork Mockup</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="JAPANESS FOOD TASK.jpg" alt="Japanese Food Menu Design">
+                    <img src="./JAPANESS FOOD TASK.jpg" alt="Japanese Food Menu Design">
                     <p>Japanese Food Menu Design</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="mohuppp.jpg" alt="Pixel Craft Business Cards">
+                    <img src="./mohuppp.jpg" alt="Pixel Craft Business Cards">
                     <p>Pixel Craft Business Cards</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="PASTASITO.jpg" alt="Pastasito Menu Design">
+                    <img src="./PASTASITO.jpg" alt="Pastasito Menu Design">
                     <p>Pastasito Menu Design</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="Yellow porsche protofile.jpg" alt="Porsche 911 Poster">
+                    <img src="./Yellow porsche protofile.jpg" alt="Porsche 911 Poster">
                     <p>Porsche 911 Poster</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="Daily dose.jpg" alt="Daily Dose Coffee Banner">
+                    <img src="./Daily dose.jpg" alt="Daily Dose Coffee Banner">
                     <p>Daily Dose Coffee Banner</p>
                 </div>
             </div>
@@ -712,22 +630,19 @@
             <!-- Drawing Gallery -->
             <div id="drawing-gallery" class="gallery-grid" style="display: none;">
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="BROWN GIRL copy 535-02.jpg" alt="Brown Girl Vector Illustration">
+                    <img src="./BROWN GIRL copy 535-02.jpg" alt="Brown Girl Vector Illustration">
                     <p>Brown Girl Vector Illustration</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="menu.jpg" alt="Tseppas Mawlid Menu Mockup">
+                    <img src="./menu.jpg" alt="Tseppas Mawlid Menu Mockup">
                     <p>Tseppas Mawlid Menu Mockup</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="MOLED-03.png" alt="Tseppas Mawlid Cover Design">
+                    <img src="./MOLED-03.jpg" alt="Tseppas Mawlid Cover Design">
                     <p>Tseppas Mawlid Cover Design</p>
                 </div>
-
                 <div class="gallery-item" onclick="openImageModal(this)">
-                    <img src="MOLED-01.png" alt="Halawet El Mouled Banner">
+                    <img src="./MOLED-01.jpg" alt="Halawet El Mouled Banner Design">
                     <p>Halawet El Mouled Banner Design</p>
                 </div>
             </div>
@@ -737,20 +652,18 @@
                 <div class="game-card">
                     <div class="game-preview">🎮</div>
                     <p>Interactive Game</p>
+                    <!-- Link to game index.html in the same repo -->
                     <a class="game-play-btn" href="https://logainibrahim163-pixel.github.io/interactive-game-/" target="_blank">Play Game</a>
                 </div>
             </div>
 
-            <!-- Default message for other projects -->
             <p id="default-message" class="default-info" style="display: none;">
                 sorry there is no more any information about lojain yet
             </p>
 
             <button class="button" onclick="showHome()">← Back to Portfolio</button>
         </div>
-
     </section>
-
 
     <!-- IMAGE FULLSCREEN MODAL -->
     <div id="image-modal" class="modal" onclick="closeImageModal(event)">
@@ -759,14 +672,11 @@
         <div class="modal-caption" id="modal-caption"></div>
     </div>
 
-
     <!-- FOOTER -->
     <footer>
         <p>© 2026 Lojain Mohamed | My Portfolio</p>
     </footer>
 
-
-    <!-- JAVASCRIPT LOGIC -->
     <script>
         function showProject(projectName) {
             document.getElementById("home-page").style.display = "none";
@@ -780,7 +690,6 @@
             const defaultMsg = document.getElementById("default-message");
             const icon = document.getElementById("project-icon");
 
-            // Reset view
             digitalGallery.style.display = "none";
             drawingGallery.style.display = "none";
             webDevGallery.style.display = "none";
@@ -817,7 +726,6 @@
             window.scrollTo(0, 0);
         }
 
-        /* Lightbox Image Viewer Logic */
         function openImageModal(element) {
             const img = element.querySelector('img');
             const title = element.querySelector('p');
@@ -826,7 +734,8 @@
             const modalCaption = document.getElementById('modal-caption');
 
             modal.style.display = "flex";
-            modalImg.src = img.src;
+            // Handled path encoding for spaces and special characters
+            modalImg.src = encodeURI(img.getAttribute('src'));
             modalImg.alt = img.alt;
             modalCaption.textContent = title ? title.textContent : img.alt;
         }
@@ -843,6 +752,5 @@
             }
         });
     </script>
-
 </body>
 </html>
