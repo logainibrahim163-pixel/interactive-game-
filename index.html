@@ -1,1565 +1,848 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مساري | Masary Corporate Career Portal</title>
-    <!-- Google Fonts: Cairo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+
+    <title>Lojain Mohamed | Portfolio</title>
+
     <style>
+        /* =========================================
+           COLOR PALETTE & VARIABLES
+           ========================================= */
         :root {
-            /* Soft Mint & Beige Palette */
-            --bg-color: c6ac8f;            /* أبيض هادئ ناعم */
-            --surface-card: #f2efe9;        /* بيج فاتح هادئ للكروت */
-            --surface-aside: c6ac8f;       /* درجة درجات المينت الفاتحة */
-            --primary-mint: #5e8c7b;        /* مينت جرين دافئ هادئ */
-            --primary-mint-dark: #3f6356;   /* مينت داكن للنصوص والعناوين */
-            --accent-beige: #d9c8b4;        /* بيج دافئ دافئ */
-            --accent-beige-dark: #91765a;   /* بيج غامق للتفاصيل */
-            --text-dark: #2c3834;           /* رمادي داكن مائل للخضرة للنصوص */
-            --text-muted: #62726b;          /* نص ثانوي مريح للعين */
-            --border-color: #d1dad4;        /* حدود هادئة جداً */
-            --chat-user-bg:c6ac8f;        /* بيج ناعم لفقاعة المستخدم */
+            --bg-dark: #293241;
+            --accent: #EE6C4D;
+            --bg-light: #FFFFFF;
+            --bg-offwhite: #F8F9FA;
+            --text-dark: #293241;
+            --text-light: #FFFFFF;
+            --text-muted: #6C757D;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-offwhite);
             color: var(--text-dark);
-            min-height: 100vh;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Language Toggle Button Style */
-        .btn-lang {
-            background: transparent;
-            border: 1px solid var(--primary-mint);
-            color: var(--primary-mint-dark);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-lang:hover {
-            background: var(--primary-mint);
-            color: #ffffff;
-        }
-
-        /* ----------------------------------
-           1. OPENING / INTRO SECTION 
-        ----------------------------------- */
-        #intro-screen {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            text-align: center;
-            background: radial-gradient(circle at center, #f0f4f1 0%, #f7f9f8 100%);
-            position: relative;
-            z-index: 200;
-        }
-
-        .intro-lang-pos {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        
-        [dir="ltr"] .intro-lang-pos {
-            right: auto;
-            left: 20px;
-        }
-
-        .intro-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--primary-mint-dark);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .intro-title span { color: var(--accent-beige-dark); }
-
-        .intro-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 650px;
             line-height: 1.6;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease-out;
         }
 
-        .notice-banner {
-            background: var(--surface-aside);
-            border: 1px solid var(--primary-mint);
-            color: var(--primary-mint-dark);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            animation: fadeInUp 1.1s ease-out;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .chooser-title {
-            font-size: 1.1rem;
-            color: var(--primary-mint-dark);
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
+        /* =========================================
+           NAVIGATION BAR
+           ========================================= */
 
-        .choices-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            width: 100%;
-            max-width: 950px;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        .choice-btn {
-            background: var(--surface-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px 15px;
-            cursor: pointer;
+        nav {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 20px 8%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .choice-btn:hover {
-            border-color: var(--primary-mint);
-            background: #ffffff;
-            transform: translateY(-4px);
-        }
-
-        .choice-btn .icon { font-size: 2rem; }
-        .choice-btn .title { font-size: 1rem; font-weight: 700; color: var(--primary-mint-dark); }
-        .choice-btn .desc { font-size: 0.78rem; color: var(--text-muted); }
-
-        /* ----------------------------------
-           2. MAIN DASHBOARD WORKSPACE 
-        ----------------------------------- */
-        #main-workspace {
-            display: none;
-            flex: 1;
-        }
-
-        aside {
-            width: 260px;
-            background: var(--surface-aside);
-            border-inline-end: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            position: fixed;
-            top: 0; bottom: 0;
-            z-index: 100;
-            padding: 25px 15px;
-        }
-
-        [dir="rtl"] aside { right: 0; }
-        [dir="ltr"] aside { left: 0; }
-
-        .brand {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--primary-mint-dark);
-            display: flex;
             align-items: center;
-            gap: 10px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            cursor: pointer;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .brand span { color: var(--accent-beige-dark); }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
 
         .nav-links {
-            list-style: none;
-            margin-top: 20px;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            gap: 30px;
+            list-style: none;
         }
 
-        .nav-item {
-            padding: 12px 16px;
-            border-radius: 10px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+
+        .hero {
+            min-height: 85vh;
+            padding: 80px 8%;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            gap: 50px;
+            background-color: var(--bg-light);
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: #ffffff;
-            color: var(--primary-mint-dark);
-            border-inline-start: 4px solid var(--primary-mint);
+        .hero-text {
+            max-width: 650px;
         }
 
-        main {
-            flex: 1;
-            padding: 30px 40px;
+        .hello {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--bg-dark);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(238, 108, 77, 0.3);
+        }
+
+        .hero-art {
+            width: 300px;
+            height: 300px;
+            background-color: var(--bg-dark);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 15px 15px 0 var(--accent);
+        }
+
+        /* =========================================
+           GENERAL SECTIONS
+           ========================================= */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--bg-dark);
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+
+        .about {
+            background-color: var(--bg-offwhite);
+        }
+
+        .about-box {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            background-color: var(--bg-light);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent);
+        }
+
+        .about-box p {
+            font-size: 18px;
+            color: var(--text-dark);
+        }
+
+        .skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .skill {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           WORK SECTION
+           ========================================= */
+
+        #work {
+            background-color: var(--bg-light);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 30px;
         }
 
-        [dir="rtl"] main { margin-inline-start: 260px; }
-        [dir="ltr"] main { margin-inline-start: 260px; }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #ffffff;
-            padding: 15px 25px;
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-
-        .header-title h1 { font-size: 1.2rem; color: var(--primary-mint-dark); }
-        .header-title p { font-size: 0.8rem; color: var(--text-muted); }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-home {
-            background: var(--surface-card);
-            color: var(--primary-mint-dark);
-            border: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.82rem;
-        }
-
-        .btn-home:hover {
-            background: var(--primary-mint);
-            color: #ffffff;
-        }
-
-        .portal-section {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
-            display: none;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .portal-section.active-section {
-            display: flex;
-            animation: fadeInUp 0.4s ease-out;
-        }
-
-        .section-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
-        }
-
-        .section-header h2 {
-            font-size: 1.3rem;
-            color: var(--primary-mint-dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-header p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-
-        .corp-card {
-            background: var(--surface-card);
-            border: 1px solid var(--border-color);
+        .work-card {
+            background-color: var(--bg-offwhite);
+            padding: 40px 30px;
             border-radius: 12px;
-            padding: 20px;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .corp-card:hover { border-color: var(--primary-mint); transform: translateY(-3px); background: #ffffff; }
-        .corp-card.active { border-color: var(--primary-mint); background: #ffffff; box-shadow: 0 0 0 2px var(--primary-mint); }
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(41, 50, 65, 0.1);
+            background-color: var(--bg-light);
+        }
 
-        .corp-card h3 { font-size: 1rem; color: var(--primary-mint-dark); margin-bottom: 8px; }
-        .corp-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.5; }
+        .work-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
 
-        .tag {
-            display: inline-block;
-            background: var(--accent-beige);
-            color: var(--accent-beige-dark);
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 6px;
+        .work-card h3 {
+            color: var(--bg-dark);
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .work-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* =========================================
+           PROJECT PAGE & GALLERIES
+           ========================================= */
+
+        #project-page {
+            display: none;
+            min-height: 85vh;
+            padding: 80px 8%;
+            text-align: center;
+            background-color: var(--bg-offwhite);
+        }
+
+        .message-box {
+            max-width: 1000px;
+            margin: auto;
+            background-color: var(--bg-light);
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .message-box .big-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .message-box h2 {
+            font-size: 32px;
+            color: var(--bg-dark);
             margin-bottom: 10px;
         }
 
-        .quiz-option-btn {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            color: var(--text-dark);
-            padding: 10px 16px;
+        .message-heading {
+            font-size: 20px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        /* Gallery Grid Layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            background-color: var(--bg-offwhite);
             border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-align: start;
-            width: 100%;
-            margin-top: 8px;
-        }
-
-        .quiz-option-btn:hover, .quiz-option-btn.selected {
-            background: var(--primary-mint);
-            color: #ffffff;
-            font-weight: 700;
-            border-color: var(--primary-mint);
-        }
-
-        .table-responsive { width: 100%; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: start; }
-        th, td { padding: 12px 15px; border: 1px solid var(--border-color); }
-        th { background: var(--surface-card); color: var(--primary-mint-dark); font-weight: 700; }
-        td { background: #ffffff; color: var(--text-muted); }
-
-        /* Chatbot Custom Styles */
-        .chatbot-container {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 440px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
-        .chat-header {
-            background: var(--primary-mint);
-            color: #ffffff;
-            padding: 14px 20px;
-            font-weight: 700;
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item p {
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bg-dark);
+        }
+
+        /* Default info message for categories without gallery */
+        .default-info {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* Game cards (Web Development gallery) */
+        .game-card {
+            background-color: var(--bg-offwhite);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-preview {
+            width: 100%;
+            height: 200px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            font-size: 60px;
+            background: linear-gradient(135deg, var(--bg-dark), var(--accent));
+            color: var(--text-light);
         }
 
-        .chat-messages {
-            flex: 1;
-            padding: 18px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: var(--bg-color);
+        .game-card p {
+            padding: 12px 12px 4px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bg-dark);
         }
 
-        .chat-bubble {
-            max-width: 80%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.88rem;
-            line-height: 1.5;
+        .game-play-btn {
+            display: inline-block;
+            margin: 12px 0 16px;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
 
-        .chat-bubble.bot {
-            background: #ffffff;
-            color: var(--text-dark);
-            border-inline-start: 4px solid var(--primary-mint);
-            border: 1px solid var(--border-color);
-            border-inline-start-width: 4px;
-            align-self: flex-start;
+        .game-play-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
         }
 
-        .chat-bubble.user {
-            background: var(--chat-user-bg);
-            color: var(--text-dark);
-            align-self: flex-end;
+        /* =========================================
+           IMAGE LIGHTBOX MODAL
+           ========================================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.88);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
         }
 
-        .chat-input-area {
-            display: flex;
-            padding: 12px;
-            background: #ffffff;
-            border-top: 1px solid var(--border-color);
-            gap: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .chat-input-area input {
-            flex: 1;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
             border-radius: 8px;
-            padding: 10px 14px;
-            color: var(--text-dark);
-            font-size: 0.85rem;
-            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            object-fit: contain;
         }
 
-        .chat-input-area input:focus {
-            border-color: var(--primary-mint);
+        .modal-caption {
+            position: absolute;
+            bottom: 25px;
+            color: var(--text-light);
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            background: rgba(41, 50, 65, 0.8);
+            padding: 8px 20px;
+            border-radius: 20px;
         }
 
-        .chat-input-area button, .btn-action {
-            background: var(--primary-mint);
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 700;
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #FFFFFF;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
+            transition: color 0.2s ease;
         }
 
-        .chat-input-area button:hover, .btn-action:hover {
-            background: var(--primary-mint-dark);
+        .close-modal:hover {
+            color: var(--accent);
         }
 
-        input[type="number"] {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 8px;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            outline: none;
+        /* =========================================
+           CONTACT SECTION
+           ========================================= */
+
+        .contact {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+        .contact .section-title {
+            color: var(--text-light);
         }
 
-        @media (max-width: 900px) {
-            aside { display: none; }
-            main { margin-inline-start: 0 !important; padding: 15px; }
-            .intro-title { font-size: 2.5rem; }
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
         }
-    
-/* ===== Guided Future Journey ===== */
-#journey-screen {
-    display:none;
-    min-height:100vh;
-    padding:32px 20px 60px;
-    background:radial-gradient(circle at top,#eef5f1 0%,var(--bg-color) 55%,#f7f9f8 100%);
-}
-.journey-wrap{max-width:1050px;margin:0 auto}
-.journey-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}
-.journey-brand{font-size:1.35rem;font-weight:900;color:var(--primary-mint-dark)}
-.journey-step{font-size:.82rem;font-weight:800;color:var(--text-muted);background:#fff;border:1px solid var(--border-color);padding:8px 14px;border-radius:999px}
-.progress-track{height:8px;background:var(--border-color);border-radius:99px;overflow:hidden;margin-bottom:30px}
-#journeyProgress{height:100%;width:14%;background:var(--primary-mint);border-radius:99px;transition:width .4s ease}
-.journey-page{display:none;background:#fff;border:1px solid var(--border-color);border-radius:22px;padding:30px;box-shadow:0 10px 35px rgba(44,56,52,.07);animation:fadeInUp .4s ease-out}
-.journey-page.active{display:block}
-.journey-page h2{color:var(--primary-mint-dark);font-size:1.55rem;margin-bottom:8px}
-.journey-page .lead{color:var(--text-muted);line-height:1.7;margin-bottom:24px}
-.journey-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
-.journey-actions .right-actions{display:flex;gap:10px;flex-wrap:wrap}
-.journey-btn{border:none;background:var(--primary-mint);color:#fff;padding:12px 22px;border-radius:10px;font-weight:800;cursor:pointer}
-.journey-btn:hover{background:var(--primary-mint-dark);transform:translateY(-2px)}
-.journey-btn.secondary{background:var(--surface-card);color:var(--primary-mint-dark);border:1px solid var(--border-color)}
-.journey-btn.secondary:hover{background:#fff;border-color:var(--primary-mint)}
-.result-box{background:var(--surface-card);border:1px solid var(--primary-mint);border-radius:16px;padding:22px;line-height:1.8;margin-top:20px}
-.result-box h3{color:var(--primary-mint-dark);margin-bottom:8px}
-.journey-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.journey-card{background:var(--surface-card);border:1px solid var(--border-color);border-radius:14px;padding:18px}
-.journey-card h3{color:var(--primary-mint-dark);margin-bottom:7px;font-size:1rem}
-.journey-card p{color:var(--text-muted);font-size:.85rem;line-height:1.65}
-.challenge-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.challenge-day{background:var(--surface-card);border:1px solid var(--border-color);padding:16px;border-radius:13px}
-.challenge-day strong{color:var(--primary-mint-dark)}
-.advisor-invite{text-align:center;padding:35px 20px;background:var(--surface-card);border-radius:18px}
-.advisor-invite .big-icon{font-size:3rem;margin-bottom:12px}
-@media(max-width:700px){.journey-page{padding:20px}.journey-top{align-items:flex-start;flex-direction:column}}
 
-    
-/* Language switcher shown on every guided journey slide */
-.journey-lang{
-    display:flex;
-    justify-content:flex-end;
-    margin-bottom:14px;
-}
-.journey-lang .btn-lang{
-    background:transparent;
-}
-.journey-lang .btn-lang:hover{
-    background:var(--primary-mint);
-    color:#fff;
-}
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
+        .social {
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+
+        footer {
+            background-color: #1e2530;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           MOBILE RESPONSIVENESS
+           ========================================= */
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 15px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-art {
+                width: 220px;
+                height: 220px;
+                font-size: 70px;
+            }
+
+            .message-box h2 {
+                font-size: 26px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .close-modal {
+                top: 15px;
+                right: 20px;
+                font-size: 32px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-    <!-- 1. OPENING / INTRO SECTION -->
-    <section id="intro-screen">
-        <div class="intro-lang-pos">
-            <button class="btn-lang" onclick="toggleLanguage()">🌐 <span id="lang-btn-text">English</span></button>
-        </div>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">My Protfolio<span>.</span></div>
 
-        <div class="intro-title">📌 <span>مساري</span> | MASARY</div>
-        <div class="intro-subtitle" id="t-intro-sub">
-            بوابة التوجيه المهني والأكاديمي المؤسسي — خطط لمستقبلك بثقة وبناءً على متطلبات سوق العمل الحقيقي.
-        </div>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="showHome()">Home</a></li>
+            <li><a href="#about" onclick="showHome()">About</a></li>
+            <li><a href="#work" onclick="showHome()">Work</a></li>
+            <li><a href="#contact" onclick="showHome()">Contact</a></li>
+        </ul>
+    </nav>
 
-        <div class="notice-banner" id="t-notice-banner">
-            ⚠️ يرجى إجراء اختبار الشغف أولاً حتى يستطيع البرنامج رسم واستكشاف مسارك المستقبلي بدقة!
-        </div>
 
-        <div class="chooser-title" id="t-chooser-title">👇 اختر خطوتك للبدء في استكشاف مسارك:</div>
+    <!-- HOME SECTION -->
+    <div id="home-page">
 
-        <!-- أزرار مرتبة بأسلوب منطقي للبدء وبدون ترقيم -->
-        <div class="choices-grid">
-            <div class="choice-btn" onclick="startJourney()">
-                <span class="icon">🎯</span>
-                <span class="title">Start Your Future Exam</span>
-                <span class="desc">Answer the questions, get your result, then follow your personalized plan.</span>
+        <section class="hero" id="home">
+
+            <div class="hero-text">
+                <div class="hello">Hello! I'm</div>
+                <h1>Lojain <span>Mohamed</span></h1>
+                <p>
+                    I'm a Grade 12 student who loves creativity, design,
+                    learning new things, and exploring the world. Here you can see how much ITI improve my skills.
+                </p>
+                <a href="#work" class="button">Explore My Work →</a>
             </div>
-        </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-track')">
-                <span class="icon">🗺️</span>
-                <span class="title" id="t-c4-t">خريطة الـ 10 سنوات</span>
-                <span class="desc" id="t-c4-d">تتبع مستقبلك الأكاديمي والمهني</span>
+
+            <div class="hero-art">🎨</div>
+
+        </section>
+
+
+        <!-- ABOUT ME -->
+        <section class="about" id="about">
+
+            <h2 class="section-title">About <span>Me</span></h2>
+
+            <div class="about-box">
+                <p>
+                    I am a Grade 12 student who enjoys learning and
+                    improving my creative skills. I am interested in
+                    graphic design, drawing, books, and technology.
+                    I believe every new project is a chance to learn
+                    something new.
+                </p>
+
+                <div class="skills">
+                    <div class="skill">Graphic Design</div>
+                    <div class="skill">Drawing</div>
+                    <div class="skill">HTML & CSS</div>
+                    <div class="skill">Creativity</div>
+                </div>
             </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-safety')">
-                <span class="icon">🛡️</span>
-                <span class="title" id="t-c5-t">شبكة الأمان (Plan B)</span>
-                <span class="desc" id="t-c5-d">الخطط البديلة للوصول لنفس الهدف</span>
+
+        </section>
+
+
+        <!-- MY WORK -->
+        <section id="work">
+
+            <h2 class="section-title">My <span>Work</span></h2>
+
+            <div class="work-grid">
+
+                <a href="#project-page" class="work-card" onclick="showProject('Digital Art')">
+                    <div class="work-icon">🎨</div>
+                    <h3>Digital Art</h3>
+                    <p>Creative digital artwork and visual ideas.</p>
+                </a>
+
+                <a href="#project-page" class="work-card" onclick="showProject('Web Development')">
+                    <div class="work-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Simple websites made with HTML and CSS.</p>
+                </a>
+
+                <a href="#project-page" class="work-card" onclick="showProject('Drawing')">
+                    <div class="work-icon">✏️</div>
+                    <h3>Drawing</h3>
+                    <p>Drawings and illustrations created while learning.</p>
+                </a>
+
+                <a href="#project-page" class="work-card" onclick="showProject('Creative Projects')">
+                    <div class="work-icon">📖</div>
+                    <h3>Creative Projects</h3>
+                    <p>Personal projects where I experiment with new ideas.</p>
+                </a>
+
             </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-export')">
-                <span class="icon">📈</span>
-                <span class="title" id="t-c7-t">تحليل الفرص المتاحة</span>
-                <span class="desc" id="t-c7-d">إدخال المجموع وتصدير التقرير</span>
+
+        </section>
+
+
+        <!-- CONTACT -->
+        <section class="contact" id="contact">
+
+            <h2 class="section-title">Let's <span>Connect</span></h2>
+            <p>Want to see more of my work? Find me on social media!</p>
+
+            <div class="social-links">
+                <a class="social" href="https://www.facebook.com/share/1Lgq4PhDaz/" target="_blank">Facebook</a>
+                <a class="social" href="https://www.instagram.com/palitraa_?igsh=ZjVnam05bWRvNXF3" target="_blank">Instagram</a>
             </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-systems')">
-                <span class="icon">📊</span>
-                <span class="title" id="t-c2-t">مقارنة الأنظمة التعليمية</span>
-                <span class="desc" id="t-c2-d">الثانوية العامة، IG، والدبلومة الأمريكية</span>
-            </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-challenge')">
-                <span class="icon">⚡</span>
-                <span class="title" id="t-c6-t">المعاهد وتحدي الصيف</span>
-                <span class="desc" id="t-c6-d">منح ITI و NTI وتحدي الـ 30 يوم</span>
-            </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-chatbot')">
-                <span class="icon">🤖</span>
-                <span class="title" id="t-c8-t">المستشار الذكي</span>
-                <span class="desc" id="t-c8-d">اسأل الشات بوت المباشر عن أي تفاصيل</span>
-            </div>
-            <div class="choice-btn" onclick="openPortalSection('sec-overview')">
-                <span class="icon">🌐</span>
-                <span class="title" id="t-c1-t">نظرة عامة</span>
-                <span class="desc" id="t-c1-d">التعرف على رؤية الموقع والخدمات</span>
-            </div>
-        </div>
-    </section>
 
+        </section>
 
-    <!-- GUIDED JOURNEY -->
-    <section id="journey-screen">
-        <div class="journey-wrap">
-            <div class="journey-top">
-                <div class="journey-brand">📌 مساري | MASARY</div>
-                <div class="journey-step" id="journeyStep">Step 1 of 7</div>
-            </div>
-            <div class="progress-track"><div id="journeyProgress"></div></div>
-
-            <!-- Step 1: Exam -->
-            <section class="journey-page active" id="journey-exam">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>🎯 Career & Passion Exam</h2>
-                <p class="lead">Answer all 7 questions. Your answers will determine the recommended pathway.</p>
-                <div class="grid-2">
-                    <div class="corp-card">
-                        <h3>1. What problems do you enjoy solving most?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(1,'tech',this)">Numbers, code and logical thinking</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(1,'bio',this)">Biology, anatomy and understanding the human body</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(1,'creative',this)">Drawing, interface design and marketing ideas</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>2. What work environment fits you best?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(2,'tech',this)">Global companies / Remote work</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(2,'bio',this)">Hospitals, clinics or laboratories</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(2,'creative',this)">Creative agencies and flexible teams</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>3. What did you dream of becoming?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(3,'tech',this)">Engineer, inventor or programmer</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(3,'bio',this)">Doctor or research scientist</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(3,'creative',this)">Artist, designer or entrepreneur</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>4. What do you enjoy in your free time?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(4,'tech',this)">New software, games and puzzles</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(4,'bio',this)">Science, medicine and nature</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(4,'creative',this)">Drawing, photography or advertising</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>5. Which future field excites you most?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(5,'tech',this)">AI and technology</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(5,'bio',this)">Precision medicine and biotechnology</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(5,'creative',this)">Digital content and user experience</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>6. What motivates you most?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(6,'tech',this)">Innovation and building useful products</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(6,'bio',this)">Helping people and making a human impact</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(6,'creative',this)">Creativity and building my own brand</button>
-                    </div>
-                    <div class="corp-card">
-                        <h3>7. How do you handle difficult challenges?</h3>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(7,'tech',this)">Break the problem into logical steps</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(7,'bio',this)">Research carefully and test patiently</button>
-                        <button class="quiz-option-btn" onclick="journeyAnswer(7,'creative',this)">Think outside the box</button>
-                    </div>
-                </div>
-                <div class="journey-actions">
-                    <span id="examProgressText" class="journey-step">0 / 7 answered</span>
-                    <button class="journey-btn" id="examFinishBtn" onclick="finishJourneyExam()" disabled>Show Final Result →</button>
-                </div>
-            </section>
-
-            <!-- Step 2: Result -->
-            <section class="journey-page" id="journey-result">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>🏆 Your Final Result</h2>
-                <p class="lead">Your answers have been analyzed. Here is your strongest current pathway.</p>
-                <div class="result-box" id="journeyResultBox"></div>
-                <div class="journey-actions">
-                    <span class="journey-step">Personalized recommendation</span>
-                    <div class="right-actions">
-                        <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                        <button class="journey-btn" onclick="goJourney(3)">Open My Life Plan →</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 3: Life Plan -->
-            <section class="journey-page" id="journey-life">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>🗺️ My Life Plan</h2>
-                <p class="lead">A practical roadmap built from your exam result.</p>
-                <div class="journey-cards" id="lifePlanCards"></div>
-                <div class="journey-actions">
-                    <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                    <button class="journey-btn" onclick="goJourney(4)">Open Plan B →</button>
-                </div>
-            </section>
-
-            <!-- Step 4: Plan B -->
-            <section class="journey-page" id="journey-planb">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>🛡️ Plan B — Safety Net</h2>
-                <p class="lead">Alternative routes that keep you moving toward a related career goal.</p>
-                <div class="journey-cards" id="planBCards"></div>
-                <div class="journey-actions">
-                    <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                    <button class="journey-btn" onclick="goJourney(5)">Opportunity Analysis →</button>
-                </div>
-            </section>
-
-            <!-- Step 5: Opportunity Analysis -->
-            <section class="journey-page" id="journey-opportunity">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>📈 Opportunity Analysis</h2>
-                <p class="lead">Enter an expected score to see a simple opportunity assessment.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                    <input type="number" id="journeyScore" min="40" max="100" placeholder="Expected score (%)" style="flex:1;min-width:220px;">
-                    <button class="journey-btn" onclick="analyzeJourneyScore()">Analyze Opportunities</button>
-                </div>
-                <div class="result-box" id="journeyScoreOutput" style="display:none;"></div>
-                <div class="journey-actions">
-                    <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                    <button class="journey-btn" onclick="goJourney(6)">Open 30-Day Challenge →</button>
-                </div>
-            </section>
-
-            <!-- Step 6: Challenge -->
-            <section class="journey-page" id="journey-challenge">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <h2>⚡ 30-Day Summer Challenge</h2>
-                <p class="lead">Use your summer to build evidence of your skills before admission.</p>
-                <div class="challenge-list">
-                    <div class="challenge-day"><strong>Days 1–7</strong><p>Build your student profile, organize your goals and create a simple CV.</p></div>
-                    <div class="challenge-day"><strong>Days 8–14</strong><p>Complete the basics of one course related to your recommended pathway.</p></div>
-                    <div class="challenge-day"><strong>Days 15–21</strong><p>Practice professional communication and create a small portfolio project.</p></div>
-                    <div class="challenge-day"><strong>Days 22–30</strong><p>Finish, document and present your project. Review admission options and next steps.</p></div>
-                </div>
-                <div class="journey-actions">
-                    <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                    <button class="journey-btn" onclick="goJourney(7)">Ask Smart Advisor →</button>
-                </div>
-            </section>
-
-            <!-- Step 7: Smart Advisor -->
-            <section class="journey-page" id="journey-advisor">
-                <div class="journey-lang"><button class="btn-lang" onclick="toggleLanguage()">🌐 <span class="journey-lang-text">العربية</span></button></div>
-                <div class="advisor-invite">
-                    <div class="big-icon">🤖</div>
-                    <h2>Ask the Smart Advisor</h2>
-                    <p class="lead">Have another question about your pathway, Plan B, admission preparation or summer challenge?</p>
-                    <button class="journey-btn" onclick="openPortalSection('sec-chatbot')">Open Smart Advisor →</button>
-                </div>
-                <div class="journey-actions">
-                    <button class="journey-btn secondary" onclick="journeyBack()">← Back</button>
-                    <button class="journey-btn secondary" onclick="showIntroScreen()">🏠 Home</button>
-                </div>
-            </section>
-        </div>
-    </section>
-
-    <!-- 2. MAIN DASHBOARD WORKSPACE -->
-    <div id="main-workspace">
-        
-        <aside>
-            <div>
-                <div class="brand" onclick="showIntroScreen()">📌 <span>مساري</span> | MASARY</div>
-                <ul class="nav-links">
-                    <li class="nav-item" id="nav-sec-quiz" onclick="showSingleSection('sec-quiz')">🎯 <span id="t-n3">اختبار الشغف</span></li>
-                    <li class="nav-item" id="nav-sec-track" onclick="showSingleSection('sec-track')">🗺️ <span id="t-n4">مسار الـ 10 سنوات</span></li>
-                    <li class="nav-item" id="nav-sec-safety" onclick="showSingleSection('sec-safety')">🛡️ <span id="t-n5">شبكة الأمان (Plan B)</span></li>
-                    <li class="nav-item" id="nav-sec-export" onclick="showSingleSection('sec-export')">📈 <span id="t-n7">تحليل الفرص</span></li>
-                    <li class="nav-item" id="nav-sec-systems" onclick="showSingleSection('sec-systems')">📊 <span id="t-n2">مقارنة الأنظمة</span></li>
-                    <li class="nav-item" id="nav-sec-challenge" onclick="showSingleSection('sec-challenge')">⚡ <span id="t-n6">المعاهد وتحدي الصيف</span></li>
-                    <li class="nav-item" id="nav-sec-chatbot" onclick="showSingleSection('sec-chatbot')">🤖 <span id="t-n8">المستشار الذكي</span></li>
-                    <li class="nav-item" id="nav-sec-overview" onclick="showSingleSection('sec-overview')">🌐 <span id="t-n1">نظرة عامة</span></li>
-                    <li class="nav-item" id="nav-all" onclick="showAllSections()" style="border-top:1px solid var(--border-color); margin-top:10px; color:var(--primary-mint-dark);">👁️ <span id="t-n9">عرض كل الأقسام</span></li>
-                </ul>
-            </div>
-        </aside>
-
-        <main>
-
-            <header>
-                <div class="header-title">
-                    <h1 id="t-h-title">بوابة الاستشارات المهنية والأكاديمية المؤسسية</h1>
-                    <p id="t-h-sub">منصة تخطيط المستقبل للطلاب وأولياء الأمور بناءً على احتياجات سوق العمل الحديث</p>
-                </div>
-                <div class="header-actions">
-                    <button class="btn-lang" onclick="toggleLanguage()">🌐 <span id="lang-btn-text-header">English</span></button>
-                    <button class="btn-home" onclick="showIntroScreen()" id="t-btn-home">🏠 الرئيسية</button>
-                </div>
-            </header>
-
-            <!-- SECTION 1 -->
-            <section class="portal-section" id="sec-overview">
-                <div class="section-header">
-                    <h2>🌐 نظرة عامة على المنصة الاستشارية</h2>
-                    <p>خطط لمستقبلك بعيداً عن العشوائية بأسلوب مؤسسي مدروس</p>
-                </div>
-                <div class="grid-3">
-                    <div class="corp-card">
-                        <span class="tag">01. التقييم والتوجيه</span>
-                        <h3>اختبار تحديد المسار</h3>
-                        <p>تحليل المهارات والشغف لتحديد التخصص الأنسب (هندسة وتكنولوجيا، علوم طبية، أم إدارة وتصميم).</p>
-                    </div>
-                    <div class="corp-card">
-                        <span class="tag">02. الرؤية المستقبلية</span>
-                        <h3>خريطة الـ 10 سنوات</h3>
-                        <p>محاكاة دقيقة لمراحل النمو من مقاعد الدراسة الجامعية وحتى الوصول لمنصب خبير/قيادي.</p>
-                    </div>
-                    <div class="corp-card">
-                        <span class="tag">03. إدارة المخاطر</span>
-                        <h3>خطة البدائل (Plan B)</h3>
-                        <p>تأمين مستقبلك المهني بشبكة أمان للوصول لنفس المسمى الوظيفي والدخل حتى لو اختلف المجموع.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 2 -->
-            <section class="portal-section" id="sec-systems">
-                <div class="section-header">
-                    <h2>📊 مقارنة الأنظمة التعليمية في مصر</h2>
-                    <p>دليل تحليلي لمساعدة الطلاب وأولياء الأمور في فهم الاختلافات الجوهرية</p>
-                </div>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>النظام التعليمي</th>
-                                <th>أسلوب المذاكرة والتقييم</th>
-                                <th>مستوى التكلفة وطبيعة القبول</th>
-                                <th>الأنسب لأي نوع من الطلاب؟</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>الثانوية العامة</strong></td>
-                                <td>تركيز على الفهم الشامل والامتحانات القومية النهائية.</td>
-                                <td>مجاني (حكومي) / تكلفة دراسية في السنترات.</td>
-                                <td>الراغبون بالالتحاق المباشر بالجامعات الحكومية.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>IGCSE (البريطاني)</strong></td>
-                                <td>تفكير نقدي، مواضيع ممتدة (Past Papers) وتقييم مرحلي.</td>
-                                <td>رسوم مرتفعة (بالجنيه الاسترليني).</td>
-                                <td>الراغبون بالدراسة بالخارج أو الجامعات الأهلية والدولية.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>الدبلومة الأمريكية (EST)</strong></td>
-                                <td>نظام الساعات المعتمدة (GPA) وامتحانات EST/SAT.</td>
-                                <td>متوسط إلى مرتفع.</td>
-                                <td>الراغبون بنظام دراسي مرن والجامعات الخاصة والأهلية.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- SECTION 3: 7 QUESTIONS QUIZ -->
-            <section class="portal-section" id="sec-quiz">
-                <div class="section-header">
-                    <h2>🎯 اختبار تحديد الشغف والمسار الشامل (7 أسئلة)</h2>
-                    <p>أجب عن الأسئلة التالية ليقوم النظام برسم خريطة مستقبلك وتحليل ميولك بدقة</p>
-                </div>
-                <div class="grid-2">
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>1. ما نوع المشكلات التي تستمتع بحلها أكثر؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(1, 'tech', this)">أرقام، أكواد برمجية، وتفكير منطقي</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(1, 'bio', this)">تجارب أحياء، تشريح، وفهم جسم الإنسان</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(1, 'creative', this)">رسم، تصميم واجهات، وتفكير تسويقي</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>2. بيئة العمل المفضل لك مستقبلاً؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(2, 'tech', this)">شركات عالمية / العمل عن بعد (Remote)</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(2, 'bio', this)">مستشفيات، عيادات، أو مختبرات علمية</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(2, 'creative', this)">وكالات إبداعية وبيئات عمل مرنة</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>3. لما كنت صغير، كان نفسك تطلع إيه لما تكبر؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(3, 'tech', this)">مهندس، مخترع، أو مبرمج ألعاب وتطبيقات</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(3, 'bio', this)">طبيب أو عالم أبحاث واكتشافات</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(3, 'creative', this)">فنان، مصمم، أو صاحب شركة وإعلامي</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>4. بتحب إيه أكثر في وقت فراغك؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(4, 'tech', this)">تجربة البرامج الجديدة، الألعاب، وحل الألغاز</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(4, 'bio', this)">قراءة المقالات العلمية والطبية ومتابعة الطبيعة</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(4, 'creative', this)">الرسم، التصوير، أو متابعة الحملات الإعلانية</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>5. شايف مجال إيه أكثر مجال مبهر ومستقبلي بالنسبة لك؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(5, 'tech', this)">الذكاء الاصطناعي والتكنولوجيا الحيوية البرمجية</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(5, 'bio', this)">الطب الدقيق والطباعة الحيوية والهندسة الوراثية</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(5, 'creative', this)">صناعة المحتوى الرقمي وتجارب المستخدم المستقبليات</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>6. ما هو الدافع الأكبر لك في مهنتك القادمة؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(6, 'tech', this)">الابتكار التقني وبناء منتجات يستخدمها الملايين</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(6, 'bio', this)">مساعدة الناس وعلاج المرضى وترك أثر إنساني</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(6, 'creative', this)">التعبير عن الإبداع وبناء علامة تجارية خاصة</button>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <h3>7. كيف تتعامل مع التحديات الصعبة؟</h3>
-                        <button class="quiz-option-btn" onclick="selectQuiz(7, 'tech', this)">أفكك المشكلة إلى خطوات منطقية وأحلها بالبيانات</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(7, 'bio', this)">أعتمد على البحث الدقيق والتجربة العلمية الصبورة</button>
-                        <button class="quiz-option-btn" onclick="selectQuiz(7, 'creative', this)">أفكر خارج الصندوق وأجد حلولاً إبداعية غير تقليدية</button>
-                    </div>
-                </div>
-                <div id="quizResult" style="display:none; background: var(--surface-card); border: 1px solid var(--primary-mint); padding: 20px; border-radius: 12px; color: var(--primary-mint-dark); font-size: 0.95rem; font-weight: 600; line-height: 1.6;"></div>
-            </section>
-
-            <!-- SECTION 4 -->
-            <section class="portal-section" id="sec-track">
-                <div class="section-header">
-                    <h2>🗺️ اختر تخصصك لعرض خريطة الـ 10 سنوات</h2>
-                    <p>اضغط على التخصص لمعاينة التطور الأكاديمي والمهني كاملاً</p>
-                </div>
-                <div class="grid-3" id="trackSelector">
-                    <div class="corp-card active" onclick="switchTrack('math', this)">
-                        <span class="tag">STEM & Tech</span>
-                        <h3>الهندسة وحاسبات والذكاء الاصطناعي</h3>
-                        <p>مسار تطوير البرمجيات، شبكات السحاب، وعلوم البيانات.</p>
-                    </div>
-                    <div class="corp-card" onclick="switchTrack('science', this)">
-                        <span class="tag">Medical & Bio</span>
-                        <h3>العلوم الطبية والتكنولوجيا الحيوية</h3>
-                        <p>الطب البشري، العيادات، التكنولوجيا الحيوية والجينات.</p>
-                    </div>
-                    <div class="corp-card" onclick="switchTrack('arts', this)">
-                        <span class="tag">Business & Design</span>
-                        <h3>التصميم الرقمي والتسويق الحديث</h3>
-                        <p>تصميم UI/UX، التسويق الرقمي وإدارة المنتجات.</p>
-                    </div>
-                </div>
-                <div class="grid-2" id="roadmapDisplay" style="margin-top: 10px;"></div>
-            </section>
-
-            <!-- SECTION 5 -->
-            <section class="portal-section" id="sec-safety">
-                <div class="section-header">
-                    <h2>🛡️ شبكة الأمان وخطة البدائل (Safety Net & Pivot Plan)</h2>
-                    <p>مستقبلك مضمون بوجود بدائل علمية واحترافية للوصول لنفس الهدف</p>
-                </div>
-                <div class="grid-2" id="safetyDisplay"></div>
-            </section>
-
-            <!-- SECTION 6 -->
-            <section class="portal-section" id="sec-challenge">
-                <div class="section-header">
-                    <h2>⚡ تحدي الـ 30 يوم + المعاهد والمنصات الصيفية</h2>
-                    <p>خطتك لاستغلال الإجازة الصيفية وبناء مهارات سوق العمل الحقيقية</p>
-                </div>
-                <div class="grid-2">
-                    <div class="corp-card" style="cursor:default;">
-                        <span class="tag">المعاهد والمنصات التدريبية</span>
-                        <h3 style="margin-top:8px;">أين تدرس وتدرب في الصيف؟</h3>
-                        <ul style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-inline-start: 18px; margin-top: 10px;">
-                            <li><strong>ITI (معهد تكنولوجيا المعلومات):</strong> منح وتدريبات صيفية مجانية ممتازة للشباب والطلاب في البرمجة والذكاء الاصطناعي.</li>
-                            <li><strong>NTI (المعهد القومي للاتصالات):</strong> معسكرات تدريبية متخصصة في شبكات كيسكو والأمن السيبراني والألياف الضوئية.</li>
-                            <li><strong>مبادرة مصر الرقمية (DEPI):</strong> منح حكومية تدريبية معتمدة لتأهيل الطلاب لسوق العمل الحر والشركات.</li>
-                            <li><strong>Coursera & EdX:</strong> منصات عالمية للحصول على شهادات معتمدة من Google, IBM, وMeta.</li>
-                        </ul>
-                    </div>
-                    <div class="corp-card" style="cursor:default;">
-                        <span class="tag">Pre-College Challenge</span>
-                        <h3 style="margin-top:8px;">جدول تحدي الـ 30 يوم قبل الجامعة</h3>
-                        <ul style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-inline-start: 18px; margin-top: 10px;">
-                            <li><strong>الأسبوع الأول:</strong> بناء بروفايل LinkedIn احترافي وكتابة السيرة الذاتية (CV).</li>
-                            <li><strong>الأسبوع الثاني:</strong> التسجيل في كورسات الأساسيات بـ ITI أو Coursera.</li>
-                            <li><strong>الأسبوع الثالث:</strong> تعلم أساسيات كتابة الإيميلات الرسمية (Business English).</li>
-                            <li><strong>الأسبوع الرابع:</strong> بناء مشروع تطبيقي بسيط وتوثيقه على بروفايلك.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION 7 -->
-            <section class="portal-section" id="sec-export">
-                <div class="section-header">
-                    <h2>📈 تحليل الفرص وتصدير الخريطة</h2>
-                    <p>أدخل مجموعك المتوقع للحصول على تقييم فوري وطباعة تقريرك</p>
-                </div>
-                <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    <input type="number" id="scoreInput" min="40" max="100" placeholder="أدخل المجموع المتوقع (%)" style="flex:1; min-width:220px;">
-                    <button class="btn-action" onclick="analyzeScore()">تحليل الفرص المتاحة</button>
-                </div>
-                <div id="scoreOutput" style="display:none; background:var(--surface-card); border:1px solid var(--primary-mint); padding:16px; border-radius:10px; font-size:0.88rem; line-height:1.6;"></div>
-
-                <div style="margin-top:15px; border-top:1px solid var(--border-color); padding-top:15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                    <span style="font-size:0.83rem; color:var(--text-muted);">يمكنك حفظ هذه الصفحة كاملة كملف PDF للرجوع إليها لاحقاً:</span>
-                    <button class="btn-action" style="background:var(--accent-beige-dark);" onclick="window.print()">🖨️ طباعة التقرير / PDF</button>
-                </div>
-            </section>
-
-            <!-- SECTION 8 -->
-            <section class="portal-section" id="sec-chatbot">
-                <div class="section-header">
-                    <h2>🤖 المستشار الذكي (Masary AI Assistant)</h2>
-                    <p>اسأل عن أي تخصص، كورسات ITI، أو مقارنة الكليات وسيُجيبك المستشار فوراً</p>
-                </div>
-                <div class="chatbot-container">
-                    <div class="chat-header">
-                        <span id="chat-status-title">💬 المستشار الأكاديمي والمهني التفاعلي</span>
-                        <span id="chat-status-online" style="font-size:0.75rem; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:10px;">متصل الآن</span>
-                    </div>
-                    <div class="chat-messages" id="chatMessages">
-                        <div class="chat-bubble bot" id="botIntroMsg">
-                            Hi! I am your advisor here, how can I help you? 👋<br>
-                            أهلاً بك! أنا مستشارك الأكاديمي والمهني الذكي في منصة **مساري**. يمكنك سؤالي عن التخصصات الجامعية، كورسات ITI و NTI، منح مصر الرقمية، أو كيفية التخطيط لمستقبلك بثقة!
-                        </div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="chatInput" placeholder="اكتب استفسارك هنا واضغط Enter..." onkeydown="if(event.key==='Enter') sendChatMessage()">
-                        <button id="send-btn" onclick="sendChatMessage()">إرسال</button>
-                    </div>
-                </div>
-            </section>
-
-        </main>
     </div>
 
-    <script>
-        let currentLang = 'ar';
 
-        const i18n = {
-            ar: {
-                langBtn: 'English',
-                introSub: 'بوابة التوجيه المهني والأكاديمي المؤسسي — خطط لمستقبلك بثقة وبناءً على متطلبات سوق العمل الحقيقي.',
-                noticeBanner: '⚠️ يرجى إجراء اختبار الشغف أولاً حتى يستطيع البرنامج رسم واستكشاف مسارك المستقبلي بدقة!',
-                chooserTitle: '👇 اختر خطوتك للبدء في استكشاف مسارك:',
-                c1T: 'نظرة عامة', c1D: 'التعرف على رؤية الموقع والخدمات',
-                c2T: 'مقارنة الأنظمة التعليمية', c2D: 'الثانوية العامة، IG، والدبلومة الأمريكية',
-                c3T: 'اختبار الشغف والمسار', c3D: 'تحديد المسار المناسب لشخصيتك',
-                c4T: 'خريطة الـ 10 سنوات', c4D: 'تتبع مستقبلك الأكاديمي والمهني',
-                c5T: 'شبكة الأمان (Plan B)', c5D: 'الخطط البديلة للوصول لنفس الهدف',
-                c6T: 'المعاهد وتحدي الصيف', c6D: 'منح ITI و NTI وتحدي الـ 30 يوم',
-                c7T: 'تحليل الفرص المتاحة', c7D: 'إدخال المجموع وتصدير التقرير',
-                c8T: 'المستشار الذكي', c8D: 'اسأل الشات بوت المباشر عن أي تفاصيل',
-                hTitle: 'بوابة الاستشارات المهنية والأكاديمية المؤسسية',
-                hSub: 'منصة تخطيط المستقبل للطلاب وأولياء الأمور بناءً على احتياجات سوق العمل الحديث',
-                btnHome: '🏠 الرئيسية',
-                n1: 'نظرة عامة', n2: 'مقارنة الأنظمة', n3: 'اختبار الشغف', n4: 'مسار الـ 10 سنوات',
-                n5: 'شبكة الأمان (Plan B)', n6: 'المعاهد وتحدي الصيف', n7: 'تحليل الفرص', n8: 'المستشار الذكي', n9: 'عرض كل الأقسام',
-                chatInputPh: 'اكتب استفسارك هنا واضغط Enter...',
-                scorePh: 'أدخل المجموع المتوقع (%)',
-                sendBtn: 'إرسال',
-                chatStatusTitle: '💬 المستشار الأكاديمي والمهني التفاعلي',
-                chatStatusOnline: 'متصل الآن'
-            },
-            en: {
-                langBtn: 'العربية',
-                introSub: 'Corporate Career & Academic Advisory Portal — Plan your future with confidence based on real market needs.',
-                noticeBanner: '⚠️ Please take the passion quiz first so the program can accurately plot and guide your future path!',
-                chooserTitle: '👇 Choose a step to start exploring your pathway:',
-                c1T: 'Overview', c1D: 'Discover our vision and platform services',
-                c2T: 'Educational Systems', c2D: 'Thanaweya Amma, IGCSE & American Diploma',
-                c3T: 'Career & Passion Quiz', c3D: 'Discover your passion and right path',
-                c4T: '10-Year Roadmap', c4D: 'Track your academic & career growth',
-                c5T: 'Safety Net (Plan B)', c5D: 'Alternative routes to reach your goal',
-                c6T: 'Institutes & Summer', c6D: 'ITI, NTI grants & 30-Day challenge',
-                c7T: 'Opportunity Analysis', c7D: 'Input score and export report',
-                c8T: 'AI Assistant', c8D: 'Chat directly with our career advisor',
-                hTitle: 'Corporate Career & Academic Advisory Portal',
-                hSub: 'Future planning platform for students and parents based on modern job market demand',
-                btnHome: '🏠 Home',
-                n1: 'Overview', n2: 'Systems', n3: 'Career Quiz', n4: '10-Year Track',
-                n5: 'Plan B (Safety)', n6: 'Institutes & Summer', n7: 'Opportunity Analysis', n8: 'AI Advisor', n9: 'Show All Sections',
-                chatInputPh: 'Type your question here and press Enter...',
-                scorePh: 'Enter expected score (%)',
-                sendBtn: 'Send',
-                chatStatusTitle: '💬 Interactive Academic and Career Advisor',
-                chatStatusOnline: 'Online now'
-            }
-        };
+    <!-- PROJECT INFORMATION PAGE -->
+    <section id="project-page">
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-
-            const t = i18n[currentLang];
-            document.getElementById('lang-btn-text').innerText = t.langBtn;
-            document.getElementById('lang-btn-text-header').innerText = t.langBtn;
-            document.getElementById('t-intro-sub').innerText = t.introSub;
-            document.getElementById('t-notice-banner').innerText = t.noticeBanner;
-            document.getElementById('t-chooser-title').innerText = t.chooserTitle;
-
-            document.getElementById('t-c1-t').innerText = t.c1T; document.getElementById('t-c1-d').innerText = t.c1D;
-            document.getElementById('t-c2-t').innerText = t.c2T; document.getElementById('t-c2-d').innerText = t.c2D;
-            document.getElementById('t-c3-t').innerText = t.c3T; document.getElementById('t-c3-d').innerText = t.c3D;
-            document.getElementById('t-c4-t').innerText = t.c4T; document.getElementById('t-c4-d').innerText = t.c4D;
-            document.getElementById('t-c5-t').innerText = t.c5T; document.getElementById('t-c5-d').innerText = t.c5D;
-            document.getElementById('t-c6-t').innerText = t.c6T; document.getElementById('t-c6-d').innerText = t.c6D;
-            document.getElementById('t-c7-t').innerText = t.c7T; document.getElementById('t-c7-d').innerText = t.c7D;
-            document.getElementById('t-c8-t').innerText = t.c8T; document.getElementById('t-c8-d').innerText = t.c8D;
-
-            document.getElementById('t-h-title').innerText = t.hTitle;
-            document.getElementById('t-h-sub').innerText = t.hSub;
-            document.getElementById('t-btn-home').innerText = t.btnHome;
-
-            document.getElementById('t-n1').innerText = t.n1; document.getElementById('t-n2').innerText = t.n2;
-            document.getElementById('t-n3').innerText = t.n3; document.getElementById('t-n4').innerText = t.n4;
-            document.getElementById('t-n5').innerText = t.n5; document.getElementById('t-n6').innerText = t.n6;
-            document.getElementById('t-n7').innerText = t.n7; document.getElementById('t-n8').innerText = t.n8;
-            document.getElementById('t-n9').innerText = t.n9;
-
-            document.getElementById('chatInput').placeholder = t.chatInputPh;
-            document.getElementById('scoreInput').placeholder = t.scorePh;
-            document.getElementById('send-btn').innerText = t.sendBtn;
-            document.getElementById('chat-status-title').innerText = t.chatStatusTitle;
-            document.getElementById('chat-status-online').innerText = t.chatStatusOnline;
-
-            // Update every language button inside the guided journey.
-            document.querySelectorAll('.journey-lang-text').forEach(el => {
-                el.innerText = t.langBtn;
-            });
-
-            // Translate the guided-journey interface labels.
-            const journeyText = currentLang === 'ar' ? {
-                examTitle:'🎯 اختبار الشغف والمسار',
-                examLead:'أجب عن الأسئلة السبعة، وسيحدد النظام المسار الأقرب إلى اهتماماتك.',
-                resultTitle:'🏆 نتيجتك النهائية',
-                resultLead:'تم تحليل إجاباتك. إليك المسار الأقوى بناءً على إجاباتك.',
-                lifeTitle:'🗺️ خطتي المستقبلية',
-                lifeLead:'خطة عملية مبنية على نتيجة الاختبار.',
-                planTitle:'🛡️ الخطة البديلة — Plan B',
-                planLead:'مسارات بديلة تساعدك على الاستمرار نحو هدف مهني قريب.',
-                oppTitle:'📈 تحليل الفرص',
-                oppLead:'أدخل مجموعك المتوقع للحصول على تحليل مبسط للفرص المتاحة.',
-                challengeTitle:'⚡ تحدي الصيف لمدة 30 يوماً',
-                challengeLead:'استغل الصيف لبناء مهارات ومشاريع تساعدك قبل التقديم والقبول.',
-                advisorTitle:'🤖 اسأل المستشار الذكي',
-                advisorLead:'هل لديك سؤال آخر عن مسارك أو خطة B أو الاستعداد للقبول أو تحدي الصيف؟',
-                step:'الخطوة',
-                of:'من',
-                answered:'تمت الإجابة',
-                showResult:'إظهار النتيجة النهائية →',
-                lifeBtn:'فتح خطتي المستقبلية →',
-                planBtn:'فتح Plan B →',
-                oppBtn:'تحليل الفرص →',
-                challengeBtn:'فتح تحدي 30 يوماً →',
-                advisorBtn:'اسأل المستشار الذكي →',
-                back:'← رجوع',
-                home:'🏠 الرئيسية',
-                analyze:'تحليل الفرص',
-                scorePh:'المجموع المتوقع (%)',
-                openAdvisor:'فتح المستشار الذكي →'
-            } : {
-                examTitle:'🎯 Career & Passion Exam',
-                examLead:'Answer the 7 questions to discover the pathway that best matches your interests.',
-                resultTitle:'🏆 Your Final Result',
-                resultLead:'Your answers have been analyzed. Here is your strongest current pathway.',
-                lifeTitle:'🗺️ My Life Plan',
-                lifeLead:'A practical roadmap built from your exam result.',
-                planTitle:'🛡️ Plan B — Safety Net',
-                planLead:'Alternative routes that keep you moving toward a related career goal.',
-                oppTitle:'📈 Opportunity Analysis',
-                oppLead:'Enter an expected score to see a simple opportunity assessment.',
-                challengeTitle:'⚡ 30-Day Summer Challenge',
-                challengeLead:'Use your summer to build skills and projects before admission.',
-                advisorTitle:'🤖 Ask the Smart Advisor',
-                advisorLead:'Have another question about your pathway, Plan B, admission preparation or summer challenge?',
-                step:'Step',
-                of:'of',
-                answered:'answered',
-                showResult:'Show Final Result →',
-                lifeBtn:'Open My Life Plan →',
-                planBtn:'Open Plan B →',
-                oppBtn:'Opportunity Analysis →',
-                challengeBtn:'Open 30-Day Challenge →',
-                advisorBtn:'Ask Smart Advisor →',
-                back:'← Back',
-                home:'🏠 Home',
-                analyze:'Analyze Opportunities',
-                scorePh:'Expected score (%)',
-                openAdvisor:'Open Smart Advisor →'
-            };
-
-            const journeyMap = {
-                'journey-exam-title':['#journey-exam h2', journeyText.examTitle],
-                'journey-exam-lead':['#journey-exam .lead', journeyText.examLead],
-                'journey-result-title':['#journey-result h2', journeyText.resultTitle],
-                'journey-result-lead':['#journey-result .lead', journeyText.resultLead],
-                'journey-life-title':['#journey-life h2', journeyText.lifeTitle],
-                'journey-life-lead':['#journey-life .lead', journeyText.lifeLead],
-                'journey-plan-title':['#journey-planb h2', journeyText.planTitle],
-                'journey-plan-lead':['#journey-planb .lead', journeyText.planLead],
-                'journey-opp-title':['#journey-opportunity h2', journeyText.oppTitle],
-                'journey-opp-lead':['#journey-opportunity .lead', journeyText.oppLead],
-                'journey-challenge-title':['#journey-challenge h2', journeyText.challengeTitle],
-                'journey-challenge-lead':['#journey-challenge .lead', journeyText.challengeLead],
-                'journey-advisor-title':['#journey-advisor h2', journeyText.advisorTitle],
-                'journey-advisor-lead':['#journey-advisor .lead', journeyText.advisorLead]
-            };
-            Object.values(journeyMap).forEach(([selector,value]) => {
-                const el = document.querySelector(selector);
-                if (el) el.innerText = value;
-            });
-
-            document.querySelectorAll('.journey-page .journey-btn').forEach(btn => {
-                const action = btn.getAttribute('onclick') || '';
-                if (action.includes('finishJourneyExam')) btn.innerText = journeyText.showResult;
-                else if (action.includes('goJourney(3)')) btn.innerText = journeyText.lifeBtn;
-                else if (action.includes('goJourney(4)')) btn.innerText = journeyText.planBtn;
-                else if (action.includes('goJourney(5)')) btn.innerText = journeyText.oppBtn;
-                else if (action.includes('goJourney(6)')) btn.innerText = journeyText.challengeBtn;
-                else if (action.includes('goJourney(7)')) btn.innerText = journeyText.advisorBtn;
-                else if (action.includes('journeyBack')) btn.innerText = journeyText.back;
-                else if (action.includes('showIntroScreen')) btn.innerText = journeyText.home;
-                else if (action.includes('analyzeJourneyScore')) btn.innerText = journeyText.analyze;
-                else if (action.includes('openPortalSection')) btn.innerText = journeyText.openAdvisor;
-            });
-
-            const score = document.getElementById('journeyScore');
-            if (score) score.placeholder = journeyText.scorePh;
-
-            const progress = document.getElementById('examProgressText');
-            if (progress) {
-                const count = Object.keys(journeyQuiz || {}).length;
-                progress.textContent = `${count} / 7 ${journeyText.answered}`;
-            }
-        }
-
-        // Show ONLY the chosen section
-        function showSingleSection(sectionId) {
-            const allSections = document.querySelectorAll('.portal-section');
-            allSections.forEach(sec => sec.classList.remove('active-section'));
-
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active-section');
-            }
-
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            const activeNav = document.getElementById(`nav-${sectionId}`);
-            if(activeNav) activeNav.classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showAllSections() {
-            const allSections = document.querySelectorAll('.portal-section');
-            allSections.forEach(sec => sec.classList.add('active-section'));
+        <div class="message-box">
+            <div class="big-icon" id="project-icon">🎨</div>
+            <h2 id="project-title">Digital Art</h2>
             
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            document.getElementById('nav-all').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            <p class="message-heading" id="project-subtitle">here you can see my work in Digital art</p>
+
+            <!-- Digital Art Gallery -->
+            <div id="digital-art-gallery" class="gallery-grid" style="display: none;">
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="Free_Apple_iMac_PSD_Mockup_01.jpg" alt="Sunrise Artwork Mockup">
+                    <p>Sunrise Artwork Mockup</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="JAPANESS FOOD TASK.jpg" alt="Japanese Food Menu Design">
+                    <p>Japanese Food Menu Design</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="mohuppp.jpg" alt="Pixel Craft Business Cards">
+                    <p>Pixel Craft Business Cards</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="PASTASITO.jpg" alt="Pastasito Menu Design">
+                    <p>Pastasito Menu Design</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="Yellow porsche protofile.jpg" alt="Porsche 911 Poster">
+                    <p>Porsche 911 Poster</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="Daily dose.jpg" alt="Daily Dose Coffee Banner">
+                    <p>Daily Dose Coffee Banner</p>
+                </div>
+            </div>
+
+            <!-- Drawing Gallery -->
+            <div id="drawing-gallery" class="gallery-grid" style="display: none;">
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="BROWN GIRL copy 535-02.jpg" alt="Brown Girl Vector Illustration">
+                    <p>Brown Girl Vector Illustration</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="menu.jpg" alt="Tseppas Mawlid Menu Mockup">
+                    <p>Tseppas Mawlid Menu Mockup</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="MOLED-03.png" alt="Tseppas Mawlid Cover Design">
+                    <p>Tseppas Mawlid Cover Design</p>
+                </div>
+
+                <div class="gallery-item" onclick="openImageModal(this)">
+                    <img src="MOLED-01.png" alt="Halawet El Mouled Banner">
+                    <p>Halawet El Mouled Banner Design</p>
+                </div>
+            </div>
+
+            <!-- Web Development Gallery -->
+            <div id="web-dev-gallery" class="gallery-grid" style="display: none;">
+                <div class="game-card">
+                    <div class="game-preview">🎮</div>
+                    <p>Interactive Game</p>
+                    <a class="game-play-btn" href="https://logainibrahim163-pixel.github.io/interactive-game-/" target="_blank">Play Game</a>
+                </div>
+            </div>
+
+            <!-- Default message for other projects -->
+            <p id="default-message" class="default-info" style="display: none;">
+                sorry there is no more any information about lojain yet
+            </p>
+
+            <button class="button" onclick="showHome()">← Back to Portfolio</button>
+        </div>
+
+    </section>
+
+
+    <!-- IMAGE FULLSCREEN MODAL -->
+    <div id="image-modal" class="modal" onclick="closeImageModal(event)">
+        <span class="close-modal" onclick="closeImageModal(event)">&times;</span>
+        <img class="modal-content" id="modal-img" alt="Full View">
+        <div class="modal-caption" id="modal-caption"></div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Lojain Mohamed | My Portfolio</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function showProject(projectName) {
+            document.getElementById("home-page").style.display = "none";
+            document.getElementById("project-page").style.display = "block";
+            document.getElementById("project-title").textContent = projectName;
+
+            const digitalGallery = document.getElementById("digital-art-gallery");
+            const drawingGallery = document.getElementById("drawing-gallery");
+            const webDevGallery = document.getElementById("web-dev-gallery");
+            const subtitle = document.getElementById("project-subtitle");
+            const defaultMsg = document.getElementById("default-message");
+            const icon = document.getElementById("project-icon");
+
+            // Reset view
+            digitalGallery.style.display = "none";
+            drawingGallery.style.display = "none";
+            webDevGallery.style.display = "none";
+            defaultMsg.style.display = "none";
+            subtitle.style.display = "block";
+
+            if (projectName === 'Digital Art') {
+                icon.textContent = "🎨";
+                digitalGallery.style.display = "grid";
+                subtitle.textContent = "here you can see my work in Digital art";
+            } 
+            else if (projectName === 'Drawing') {
+                icon.textContent = "✏️";
+                drawingGallery.style.display = "grid";
+                subtitle.textContent = "here you can see my work in Drawing";
+            } 
+            else if (projectName === 'Web Development') {
+                icon.textContent = "💻";
+                webDevGallery.style.display = "grid";
+                subtitle.textContent = "here you can see my work in Web Development";
+            }
+            else {
+                icon.textContent = "📖";
+                subtitle.style.display = "none";
+                defaultMsg.style.display = "block";
+            }
+
+            window.scrollTo(0, 0);
         }
 
-        function openPortalSection(sectionId) {
-            document.getElementById('intro-screen').style.display = 'none';
-            document.getElementById('main-workspace').style.display = 'block';
-            showSingleSection(sectionId);
+        function showHome() {
+            document.getElementById("home-page").style.display = "block";
+            document.getElementById("project-page").style.display = "none";
+            window.scrollTo(0, 0);
         }
 
-        function showIntroScreen() {
-            document.getElementById('main-workspace').style.display = 'none';
-            document.getElementById('intro-screen').style.display = 'flex';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        /* Lightbox Image Viewer Logic */
+        function openImageModal(element) {
+            const img = element.querySelector('img');
+            const title = element.querySelector('p');
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modalCaption.textContent = title ? title.textContent : img.alt;
         }
 
-        // Quiz Logic for 7 Questions
-        let quizState = {};
-        function selectQuiz(qNum, val, btn) {
-            quizState[qNum] = val;
-            const parent = btn.parentElement;
-            parent.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-
-            const answeredCount = Object.keys(quizState).length;
-            const res = document.getElementById('quizResult');
-            res.style.display = 'block';
-
-            if (answeredCount < 7) {
-                res.innerHTML = `⏳ **أجبت على (${answeredCount} من 7 أسئلة):** استكمل باقي الأسئلة لتحصل على التحليل الكامل لمسارك!`;
-            } else {
-                // Calculate dominant choice
-                let counts = { tech: 0, bio: 0, creative: 0 };
-                Object.values(quizState).forEach(type => counts[type] = (counts[type] || 0) + 1);
-
-                if (counts.tech >= counts.bio && counts.tech >= counts.creative) {
-                    res.innerHTML = "🎯 **النتيجة النهائية لمسارك:** أظهرت إجاباتك ميلاً قوياً نحو **التكنولوجيا، البرمجة، والذكاء الاصطناعي**! نوصيك بالتركيز على كليات الحاسبات، الهندسة، أو المنح المباشرة من ITI وتحدي الـ 30 يوم.";
-                    switchTrack('math', null);
-                } else if (counts.bio >= counts.tech && counts.bio >= counts.creative) {
-                    res.innerHTML = "🎯 **النتيجة النهائية لمسارك:** أظهرت إجاباتك ميلاً شديداً نحو **العلوم الطبية والتكنولوجيا الحيوية (Biotech)**! نوصيك بالتركيز على مسارات الطب، العلوم الصحية التطبيقية، والأبحاث الجينية.";
-                    switchTrack('science', null);
-                } else {
-                    res.innerHTML = "🎯 **النتيجة النهائية لمسارك:** أنت تمتلك عقلاً إبداعياً مميزاً في **التصميم الرقمي، UI/UX، وإدارة المنتجات والتسويق**! نوصيك بالاستثمار في مهارات Figma، التسويق الرقمي، ومنح DEPI.";
-                    switchTrack('arts', null);
-                }
+        function closeImageModal(event) {
+            if (event.target.id === 'image-modal' || event.target.classList.contains('close-modal')) {
+                document.getElementById('image-modal').style.display = "none";
             }
         }
 
-        // Roadmap & Safety Data
-        const roadmapData = {
-            math: [
-                { time: "السنوات 1 - 4", title: "مرحلة الجامعة والأساسيات", desc: "دراسة البرمجة، الرياضيات، ودخول معسكرات ITI و DEPI الصيفية لبناء المشاريع." },
-                { time: "السنة 5", title: "سوق العمل (Junior Engineer)", desc: "الانضمام لشركة تقنية كـ Software Developer براتب تنافسي ومجال واعد." },
-                { time: "السنة 7", title: "العمل العالمي (Remote Work)", desc: "العمل مع شركات دولية من البيت بالعملة الصعبة أو السفر للخارج." },
-                { time: "السنة 10", title: "القيادة التقنية (Tech Lead)", desc: "إدارة الفرق البرمجية، أو تأسيس مشروعك التقني الخاص." }
-            ],
-            science: [
-                { time: "السنوات 1 - 5", title: "الدراسة الطبية والاحتراف", desc: "التدريب الميداني بالمعامل والمستشفيات والتركيز على أبحاث التكنولوجيا الحيوية." },
-                { time: "السنة 6", title: "التخصص المهني", desc: "العمل بشركات الأدوية العالمية، مراكز التحاليل الجينية، أو المستشفيات." },
-                { time: "السنة 8", title: "الاعتماد الدولي", desc: "الحصول على درجة الماجستير أو الزمالة بالخارج للتخصص الدقيق." },
-                { time: "السنة 10", title: "المكاسب والقيادة", desc: "إدارة وحدات البحث والتطوير أو افتتاح مركز استشاري حيوي خاص." }
-            ],
-            arts: [
-                { time: "السنوات 1 - 4", title: "المهارات الرقمية والتطبيق", desc: "تعلم Figma لتصميم الواجهات، ودراسة التسويق المبني على البيانات." },
-                { time: "السنة 5", title: "الانطلاق في الشركات", desc: "العمل كـ UI/UX Designer أو Digital Marketer في شركات البرمجة والإعلام." },
-                { time: "السنة 7", title: "الاستقلالية والـ Freelance", desc: "العمل الحر مع عملاء دوليين وبناء بروفايل أعمال عالمي." },
-                { time: "السنة 10", title: "إدارة الوكالات (Agency)", desc: "تأسيس وكالة تسويق وتصميم خاصة بك أو شغل منصب مدير تسويق (CMO)." }
-            ]
-        };
-
-        const safetyData = {
-            math: [
-                { target: "حاسبات وهندسة حكومية", plan: "كلية علوم (حاسب) أو تجارة BIS + كورسات ITI / NTI المكثفة", result: "التوظيف بنفس الوظائف والمرتبات مثل خريجي حاسبات تماماً." },
-                { target: "الذكاء الاصطناعي المباشر", plan: "دراسة إدارة الأعمال + شهادات Google Data Analytics", result: "الدخول لمجال تحليل البيانات وإدارة المنتجات التقنية." }
-            ],
-            science: [
-                { target: "طب بشري / أسنان", plan: "تكنولوجيا حيوية (Biotech) أو تمريض دولي عالي", result: "فرص سفر وسوق عمل عالمي مطلوب جداً بالخارج." },
-                { target: "صيدلة / علاج طبيعي", plan: "علوم كيمياء / علوم صحية تطبيقية + أبحاث إكلينيكية", result: "العمل بشركات الأدوية ومختبرات الأبحاث العالمية." }
-            ],
-            arts: [
-                { target: "إعلام / ألسن حكومي", plan: "تجارة إنجليزي / آداب + كورسات UI/UX ومبادرة مصر الرقمية", result: "العمل كـ Product Designer بشركات التكنولوجيا." }
-            ]
-        };
-
-        function switchTrack(trackKey, element) {
-            document.querySelectorAll('#trackSelector .corp-card').forEach(c => c.classList.remove('active'));
-            if(element) element.classList.add('active');
-
-            const roadBox = document.getElementById('roadmapDisplay');
-            roadBox.innerHTML = '';
-            roadmapData[trackKey].forEach(item => {
-                roadBox.innerHTML += `
-                    <div class="corp-card" style="cursor:default;">
-                        <span class="tag">${item.time}</span>
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                    </div>
-                `;
-            });
-
-            const safeBox = document.getElementById('safetyDisplay');
-            safeBox.innerHTML = '';
-            safetyData[trackKey].forEach(item => {
-                safeBox.innerHTML += `
-                    <div class="corp-card" style="cursor:default; border-inline-start: 4px solid var(--accent-beige-dark);">
-                        <h3 style="color:var(--accent-beige-dark);">❌ الهدف الأول: ${item.target}</h3>
-                        <p style="margin-top:6px; color:var(--primary-mint-dark);"><strong>🔄 الخطة ب (Plan B):</strong> ${item.plan}</p>
-                        <p style="margin-top:6px; color:var(--text-muted);"><strong>✅ النتيجة:</strong> ${item.result}</p>
-                    </div>
-                `;
-            });
-        }
-
-        switchTrack('math', null);
-
-        function analyzeScore() {
-            const score = parseFloat(document.getElementById('scoreInput').value);
-            const box = document.getElementById('scoreOutput');
-
-            if(!score || score < 40 || score > 100) {
-                box.style.display = 'block';
-                box.style.borderColor = '#d97706';
-                box.innerHTML = '⚠️ يرجى إدخال نسبة مئوية صحيحة بين 40% و 100%.';
-                return;
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('image-modal').style.display = "none";
             }
-
-            box.style.display = 'block';
-            box.style.borderColor = 'var(--primary-mint)';
-
-            if(score >= 85) {
-                box.innerHTML = '🌟 <strong>مجموع ممتاز:</strong> لديك فرص مباشرة بالجامعات الحكومية، والمنح الكاملة بالجامعات الأهلية والدولية بالتخصصات الحديثة.';
-            } else if(score >= 70) {
-                box.innerHTML = '💡 <strong>مجموع جيد جداً:</strong> مسارات متميزة بالجامعات التكنولوجية، تخصصات الحاسبات والذكاء الاصطناعي الأهلية، والجامعات الخاصة.';
-            } else {
-                box.innerHTML = '🚀 <strong>المهارات هي الأهم:</strong> سوق العمل التقني يعتمد على المهارة والشهادات المعتمدة (مثل ITI و NTI و AWS) بغض النظر عن مجموع الثانوية!';
-            }
-        }
-
-        // Dynamic Flexible Chatbot Logic
-        function sendChatMessage() {
-            const input = document.getElementById('chatInput');
-            const msgText = input.value.trim();
-            if(!msgText) return;
-
-            const chatMessages = document.getElementById('chatMessages');
-
-            const userMsg = document.createElement('div');
-            userMsg.className = 'chat-bubble user';
-            userMsg.innerText = msgText;
-            chatMessages.appendChild(userMsg);
-
-            input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'chat-bubble bot';
-                
-                const lower = msgText.toLowerCase();
-                let reply = "";
-
-                if (lower.startsWith('hi') || lower.startsWith('hello') || lower.includes('مرحبا') || lower.includes('أهلا') || lower.includes('ازيك')) {
-                    reply = "Hi! I am your advisor here, how can I help you? 👋<br>أهلاً بك! كيف يمكنني مساعدتك اليوم في اختيار مسارك التعليمي أو المهني؟";
-                } else if(lower.includes('iti') || lower.includes('معهد تكنولوجيا المعلومات')) {
-                    reply = "💡 **معهد تكنولوجيا المعلومات (ITI):** يقدم منحاً مكثفة مجانية (مثل منحة 3 أشهر و9 أشهر) في مجالات البرمجة، الذكاء الاصطناعي، الأمن السيبراني، وتصميم UI/UX. شهاداته قوية جداً وتضمن لك فرصة عمل في كبرى الشركات.";
-                } else if(lower.includes('nti') || lower.includes('اتصالات')) {
-                    reply = "📡 **المعهد القومي للاتصالات (NTI):** مخصص لمعسكرات التدريب في الشبكات، الأمن السيبراني، والألياف الضوئية، ويوفر تدريباً عملياً على أجهزة سيسكو وشركات الاتصالات العالمية.";
-                } else if(lower.includes('ذكاء') || lower.includes('ai') || lower.includes('برمجة')) {
-                    reply = "🤖 **مجال البرمجة والذكاء الاصطناعي:** يمكنك البدء الآن بتعلم لغة Python وتأسيس منطق البرمجة، ثم التقديم على المنح المجانية عبر منصة ITI أو Coursera لتنفيذ مشاريع عملية.";
-                } else if(lower.includes('أهل') || lower.includes('اقنع')) {
-                    reply = "🤝 **إقناع الأهل:** أفضل طريقة هي توضيح احتياجات سوق العمل الحديث، وإظهار أمثلة لشباب يعملون من المنزل بمرتبات بالعملة الصعبة، وشرح أن لديك خطة بديلة (Plan B) تأمن مستقبلك.";
-                } else if(lower.includes('منح') || lower.includes('depi') || lower.includes('مصر الرقمية')) {
-                    reply = "🎓 **مبادرة مصر الرقمية (DEPI):** منحة حكومية ممتازة تدرب الطلاب والخريجين على مهارات البرمجة والتسويق والعمل الحر (Freelancing) مع شهادات معتمدة.";
-                } else {
-                    reply = "أنا هنا لمساعدتك! يمكنك سؤالي عن التخصصات، المنح التدريبية مثل ITI و NTI، كيفية التحضير للجامعة، أو إتاحة خطط بديلة للوصول لنفس الهدف الوظيفي.";
-                }
-
-                botMsg.innerHTML = reply;
-                chatMessages.appendChild(botMsg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 400);
-        }
-    
-        /* ===== Guided Journey Flow ===== */
-        let journeyPage = 1;
-        let journeyQuiz = {};
-        let journeyTrack = 'tech';
-
-        const journeyProfiles = {
-            tech: {
-                title: 'Technology, Programming & AI',
-                summary: 'Your answers show a strong preference for logical problem-solving, technology and building useful digital products.',
-                life: [
-                    ['University foundation', 'Focus on programming, mathematics, projects and practical technology skills.'],
-                    ['Skill building', 'Use structured courses and summer training to build a portfolio of real projects.'],
-                    ['Early career', 'Target junior software, data, AI or technology roles and keep developing your portfolio.'],
-                    ['Long-term direction', 'Move toward specialization, remote/global opportunities or technical leadership.']
-                ],
-                planb: [
-                    ['Alternative degree', 'A related computing, science or business-information pathway can be paired with strong technical certifications and projects.'],
-                    ['Skill-first route', 'Build demonstrable programming/data skills through projects and structured training even if your first-choice admission route changes.']
-                ]
-            },
-            bio: {
-                title: 'Medical Sciences & Biotechnology',
-                summary: 'Your answers show a strong interest in biology, helping people and scientific investigation.',
-                life: [
-                    ['Academic foundation', 'Build strong biology, chemistry and research fundamentals.'],
-                    ['Practical experience', 'Look for supervised labs, research exposure and relevant summer learning.'],
-                    ['Specialization', 'Explore healthcare, biotechnology, laboratory science or research pathways.'],
-                    ['Long-term direction', 'Develop a specialized profile through advanced study and practical experience.']
-                ],
-                planb: [
-                    ['Related science route', 'Explore biotechnology, applied sciences or health-related programs that connect to your target field.'],
-                    ['Research route', 'Build laboratory, data and scientific communication skills for research-oriented opportunities.']
-                ]
-            },
-            creative: {
-                title: 'Digital Design, UX & Creative Business',
-                summary: 'Your answers show a strong creative profile with interest in design, user experience and building ideas into visible products.',
-                life: [
-                    ['Foundation', 'Develop visual design, UX thinking and communication skills.'],
-                    ['Portfolio', 'Create practical projects and document your process in a clear portfolio.'],
-                    ['Early career', 'Explore UI/UX, digital marketing, content or product-design opportunities.'],
-                    ['Long-term direction', 'Grow toward freelance work, creative leadership, product roles or your own studio.']
-                ],
-                planb: [
-                    ['Related degree route', 'A business, communication or arts-related degree can be combined with strong digital design skills.'],
-                    ['Portfolio-first route', 'Build a strong project portfolio and recognized skills alongside your academic path.']
-                ]
-            }
-        };
-
-        function startJourney() {
-            document.getElementById('intro-screen').style.display = 'none';
-            document.getElementById('main-workspace').style.display = 'none';
-            document.getElementById('journey-screen').style.display = 'block';
-            journeyPage = 1;
-            journeyQuiz = {};
-            document.querySelectorAll('#journey-exam .quiz-option-btn').forEach(b => b.classList.remove('selected'));
-            document.getElementById('examFinishBtn').disabled = true;
-            document.getElementById('examProgressText').textContent = '0 / 7 answered';
-            showJourneyPage();
-            window.scrollTo({top:0, behavior:'smooth'});
-        }
-
-        function journeyAnswer(q, value, btn) {
-            journeyQuiz[q] = value;
-            const parent = btn.parentElement;
-            parent.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            const count = Object.keys(journeyQuiz).length;
-            document.getElementById('examProgressText').textContent = currentLang === 'ar' ? `${count} / 7 تمت الإجابة` : `${count} / 7 answered`;
-            document.getElementById('examFinishBtn').disabled = count < 7;
-        }
-
-        function getJourneyTrack() {
-            const counts = {tech:0,bio:0,creative:0};
-            Object.values(journeyQuiz).forEach(v => counts[v]++);
-            return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
-        }
-
-        function finishJourneyExam() {
-            if (Object.keys(journeyQuiz).length < 7) return;
-            journeyTrack = getJourneyTrack();
-            const profile = journeyProfiles[journeyTrack];
-            document.getElementById('journeyResultBox').innerHTML =
-                `<h3>🎯 Recommended Path: ${profile.title}</h3><p>${profile.summary}</p>`;
-            renderJourneyCards('lifePlanCards', profile.life);
-            renderJourneyCards('planBCards', profile.planb);
-            goJourney(2);
-        }
-
-        function renderJourneyCards(id, items) {
-            document.getElementById(id).innerHTML = items.map((item,i) =>
-                `<div class="journey-card"><h3>${i+1}. ${item[0]}</h3><p>${item[1]}</p></div>`
-            ).join('');
-        }
-
-        function showJourneyPage() {
-            document.querySelectorAll('.journey-page').forEach(p => p.classList.remove('active'));
-            const ids = ['journey-exam','journey-result','journey-life','journey-planb','journey-opportunity','journey-challenge','journey-advisor'];
-            document.getElementById(ids[journeyPage-1]).classList.add('active');
-            document.getElementById('journeyStep').textContent = currentLang === 'ar' ? `الخطوة ${journeyPage} من 7` : `Step ${journeyPage} of 7`;
-            document.getElementById('journeyProgress').style.width = `${(journeyPage/7)*100}%`;
-            window.scrollTo({top:0,behavior:'smooth'});
-        }
-
-        function goJourney(page) {
-            if (page < 1 || page > 7) return;
-            journeyPage = page;
-            showJourneyPage();
-        }
-
-        function journeyBack() {
-            goJourney(journeyPage - 1);
-        }
-
-        function analyzeJourneyScore() {
-            const score = parseFloat(document.getElementById('journeyScore').value);
-            const box = document.getElementById('journeyScoreOutput');
-            box.style.display = 'block';
-            if (!score || score < 40 || score > 100) {
-                box.innerHTML = '⚠️ Please enter a valid percentage between 40% and 100%.';
-                return;
-            }
-            if (score >= 85) {
-                box.innerHTML = '🌟 <strong>Strong score range:</strong> Explore competitive university options and scholarship/admission opportunities that match your chosen pathway.';
-            } else if (score >= 70) {
-                box.innerHTML = '💡 <strong>Good score range:</strong> Compare university, technology and private/alternative programs while strengthening your practical skills.';
-            } else {
-                box.innerHTML = '🚀 <strong>Skills-first strategy:</strong> Keep multiple admission routes open and invest in projects, recognized training and practical skills.';
-            }
-        }
-
-        function showIntroScreen() {
-            document.getElementById('main-workspace').style.display = 'none';
-            document.getElementById('journey-screen').style.display = 'none';
-            document.getElementById('intro-screen').style.display = 'flex';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openPortalSection(sectionId) {
-            document.getElementById('intro-screen').style.display = 'none';
-            document.getElementById('journey-screen').style.display = 'none';
-            document.getElementById('main-workspace').style.display = 'block';
-            showSingleSection(sectionId);
-        }
-
+        });
     </script>
+
 </body>
 </html>
