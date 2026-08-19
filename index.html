@@ -3,89 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحدي تفكيك القنبلة 💣</title>
+    <title>Bomb Defusal - 10 Levels Challenge</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         :root {
-            --bg-color: #0d021a;
-            --card-bg: #190633;
-            --accent-pink: #ff007f;
-            --accent-cyan: #00f0ff;
-            --accent-yellow: #ffe600;
-            --danger-red: #ff2a2a;
+            --bg-grad: linear-gradient(135deg, #0d0221 0%, #190535 50%, #05010e 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(0, 240, 255, 0.3);
+            --neon-pink: #ff007f;
+            --neon-cyan: #00f0ff;
+            --neon-gold: #ffd700;
             --text-color: #ffffff;
         }
 
-        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        body { background-color: var(--bg-color); color: var(--text-color); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .game-container { width: 100%; max-width: 850px; background: var(--card-bg); border: 3px solid var(--accent-pink); border-radius: 24px; padding: 35px; box-shadow: 0 0 35px rgba(255, 0, 127, 0.4); text-align: center; position: relative; }
-        
-        h1 { color: var(--accent-yellow); font-size: 2.5rem; margin-bottom: 15px; text-shadow: 0 0 10px var(--accent-yellow); }
-        .screen { display: none; animation: fadeIn 0.3s ease-in-out; }
-        .screen.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Timer Bomb UI */
-        .bomb-timer { font-size: 4rem; font-weight: bold; color: var(--danger-red); background: #000; border: 3px solid var(--danger-red); border-radius: 16px; padding: 10px 30px; display: inline-block; margin: 20px 0; font-family: monospace; box-shadow: 0 0 20px var(--danger-red); }
-        
-        #qrcode { background: white; padding: 15px; border-radius: 16px; display: inline-block; margin: 20px 0; box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); }
-        
-        .btn { background: linear-gradient(45deg, var(--accent-pink), #b000ff); color: white; border: none; padding: 15px 35px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; margin: 10px; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); }
-        .btn:hover { transform: scale(1.05); }
-        .btn-cyan { background: linear-gradient(45deg, var(--accent-cyan), #0077ff); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
-        .btn-wire { width: 100%; padding: 18px; font-size: 1.3rem; margin: 10px 0; border-radius: 12px; }
+        body {
+            background: var(--bg-grad);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-        .wire-red { background: #d32f2f; }
-        .wire-blue { background: #1976d2; }
-        .wire-yellow { background: #fbc02d; color: #000; }
-        
-        .status-msg { font-size: 1.8rem; margin: 20px 0; font-weight: bold; }
+        .game-container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 2px solid var(--card-border);
+            border-radius: 28px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--neon-gold);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #d8ceef;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Modern Badges & Level Progress */
+        .level-badge {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.2);
+            border: 1px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* Rules Cards */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+            text-align: right;
+        }
+
+        .rule-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 4px solid var(--neon-cyan);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .rule-card h3 {
+            color: var(--neon-cyan);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .rule-card p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: #bfaee3;
+        }
+
+        /* QR Code Modern Frame */
+        #qrcode {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 0 30px rgb(221, 238, 240);
+        }
+
+        /* Modern Input & Buttons */
+        input[type="text"] {
+            width: 80%;
+            padding: 16px;
+            border-radius: 14px;
+            border: 2px solid var(--neon-cyan);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--neon-pink), #8a00ff);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.4);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.6);
+        }
+
+        .btn-cyan {
+            background: linear-gradient(135deg, var(--neon-cyan), #0055ff);
+            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .btn-cyan:hover {
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.6);
+        }
+
+        .challenge-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px dashed var(--neon-gold);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-size: 1.25rem;
+            color: #ffffff;
+            line-height: 1.7;
+        }
+
+        /* Motivational Card */
+        .quote-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 0, 127, 0.15));
+            border: 2px solid var(--neon-gold);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            font-size: 1.3rem;
+            color: var(--neon-gold);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <div class="game-container">
-        <!-- Screen 1: Lobby & QR Code -->
-        <div id="screen-lobby" class="screen active">
-            <h1>💣 تحدي تفكيك القنبلة</h1>
-            <p style="font-size: 1.2rem; color: var(--accent-cyan);">امسحوا الـ QR Code بموبايلاتكم عشان تدخلوا فرقة التفكيك!</p>
+
+        <!-- Slide 0: Rules -->
+        <div id="screen-intro" class="screen active">
+            <div class="level-badge">تحدي فك القنبلة 💣</div>
+            <h1>مهمة الـ 10 التحديات السرية</h1>
+            <p>علشان تفك القنبلة وتكسب، لازم تعبر 10 مستويات متتالية وتزداد صعوبة مع كل مرحلة!</p>
+
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3>📱 1. المسح والاتصال</h3>
+                    <p>امسح الـ QR Code بموبايلك للبدء مباشرة.</p>
+                </div>
+                <div class="rule-card">
+                    <h3>⚡ 2. 10 مستويات تصاعدية</h3>
+                    <p>كل سؤال صح بيفتح المستوى اللي بعده وتزداد الصعوبة.</p>
+                </div>
+                <div class="rule-card">
+                    <h3>🧠 3. الذكاء والتركيز</h3>
+                    <p>حل الألغاز بدقة عشان متفجرش القنبلة!</p>
+                </div>
+                <div class="rule-card">
+                    <h3>🏆 4. جائزة النصر</h3>
+                    <p>اجتياز الـ 10 مراحل يمنحك رسالة تحفيزية خاصة بمسيرتك!</p>
+                </div>
+            </div>
+
+            <button class="btn btn-cyan" onclick="showScreen('screen-main')">عرض الـ QR Code وابدأ التحدي 🚀</button>
+        </div>
+
+        <!-- Screen 1: Laptop QR Display -->
+        <div id="screen-main" class="screen">
+            <h1>غرفة عمليات فك القنبلة 💣</h1>
+            <p>امسحي الكود بموبايلك للبدء في حل الـ 10 تحديات:</p>
             
             <div id="qrcode"></div>
             <br>
-            <button class="btn btn-cyan" onclick="startBombGame()">ابدأ العد التنازلي! ⏳</button>
+            <button class="btn btn-cyan" onclick="startLevels()">البدء من الموبايل / اللاب توب 📱</button>
         </div>
 
-        <!-- Screen 2: Active Bomb -->
-        <div id="screen-bomb" class="screen">
-            <h1 style="color: var(--accent-pink);">⚠️ الخطر قائم! اختاروا السلك الصح!</h1>
-            <div class="bomb-timer" id="timer-display">00:30</div>
+        <!-- Screen 2: Game Levels (From Level 1 to 10) -->
+        <div id="screen-game" class="screen">
+            <div class="level-badge" id="level-indicator">المستوى 1 / 10</div>
+            <h1 id="level-title">تحدي فك الشفرة</h1>
             
-            <p style="margin-bottom: 20px;">قدامكم 30 ثانية بس ياما القنبلة هتفرقع! 💥</p>
-            
-            <button class="btn btn-wire wire-red" onclick="defuse(false)">قطع السلك الأحمر 🔴</button>
-            <button class="btn btn-wire wire-blue" onclick="defuse(true)">قطع السلك الأزرق 🔵</button>
-            <button class="btn btn-wire wire-yellow" onclick="defuse(false)">قطع السلك الأصفر 🟡</button>
+            <div class="challenge-box" id="challenge-question">
+                جاري تحميل التحدي...
+            </div>
+
+            <input type="text" id="user-answer" placeholder="اكتب إجابتك هنا...">
+            <br>
+            <button class="btn" onclick="checkAnswer()">تأكيد الإجابة وفك الشفرة 🔓</button>
         </div>
 
-        <!-- Screen 3: Win / Lose Result -->
-        <div id="screen-result" class="screen">
-            <div id="result-content"></div>
-            <br><br>
-            <button class="btn btn-cyan" onclick="resetGame()">محاولة جديدة 🔄</button>
+        <!-- Screen 3: Victory & Motivational Quote -->
+        <div id="screen-victory" class="screen">
+            <div class="level-badge" style="border-color: var(--neon-gold); color: var(--neon-gold);">🎉 تم فك القنبلة بنجاح!</div>
+            <h1>مبروك! لقد نجحت في تجاوُز 10 مستويات معقدة!</h1>
+            
+            <div class="quote-box" id="motivational-quote">
+                "الذكاء ليس مجرد سرعة حل الألغاز، بل الشجاعة في مواجهة التحديات المعقدة والوقوف بعد كل محاولة. أنت تمتلك العقل والإرادة لتجاوز أي عائق في حياتك الحقيقية كما تجاوزت هذه القنبلة اليوم!"
+            </div>
+
+            <button class="btn btn-cyan" onclick="resetGame()">إعادة التحدي من جديد 🔄</button>
         </div>
+
     </div>
 
     <script>
-        let timeLeft = 30;
-        let timerInterval = null;
+        // 10 مستويات تصاعدية الصعوبة مع الإجابات الصحيحة
+        const levels = [
+            { level: 1, title: "المستوى 1: السهل", question: "ما هو الشيء الذي كلما أخذت منه كِبُر؟", answer: "الحفرة" },
+            { level: 2, title: "المستوى 2: الخفيف", question: "ما هو الشيء الذي يمشي بلا أرجل ويدخل الأذنين فقط؟", answer: "الصوت" },
+            { level: 3, title: "المستوى 3: المتوسط", question: "ساعة حائط تدق 5 دقات في 4 ثوانٍ، كم دقة تدقها في 10 ثوانٍ؟", answer: "11" },
+            { level: 4, title: "المستوى 4: الرياضيات", question: "ما هو الرقم الذي لو ضربته في نفسه وأضفت عليه 5 أصبح 30؟", answer: "5" },
+            { level: 5, title: "المستوى 5: التفكير النقدي", question: "ما هو الشيء الذي يحمل طعامه فوق رأسه، وإذا مشى أكل منه وإذا استراح ألقاه؟", answer: "قلم الرصاص" },
+            { level: 6, title: "المستوى 6: الشفرة اللغوية", question: "كلمة مكونة من 5 حروف، إذا حذفنا أول حرفين أصبحت كلمة تدل على حدث مهم، فما هي؟", answer: "سماء" }, // مثال
+            { level: 7, title: "المستوى 7: المنطق المتقدم", question: "أب عمره 40 سنة وابنه 10 سنوات، بعد كم سنة يصبح عمر الأب ضعف عمر الابن؟", answer: "20" },
+            { level: 8, title: "المستوى 8: الشفرة المظلمة", question: "ما هو الشيء الذي تملكه ولكن يستخدمه الآخرون أكثر منك؟", answer: "اسمك" },
+            { level: 9, title: "المستوى 9: شبه المعقد", question: "رجل خرج في المطر الغزير بدون مظلة ولم تبتل شعر رأسه شعرة واحدة، كيف حدث ذلك؟", answer: "أصلع" },
+            { level: 10, title: "المستوى 10: شفرة القنبلة النهائية", question: "أنا دائماً أمامك ولكنك لا تستطيع رؤيتي، وأنا مفتاح مستقبلك.. فمن أنا؟", answer: "المستقبل" }
+        ];
+
+        let currentLevelIndex = 0;
 
         window.onload = function() {
             new QRCode(document.getElementById("qrcode"), {
-                // الرابط بتاعك المباشر على GitHub Pages:
                 text: "https://logainibrahim163-pixel.github.io/interactive-game-/",
-                width: 180,
-                height: 180,
-                colorDark : "#0d021a",
+                width: 170,
+                height: 170,
+                colorDark : "#0d0221",
                 colorLight : "#ffffff",
                 correctLevel : QRCode.CorrectLevel.H
             });
@@ -96,48 +304,45 @@
             document.getElementById(screenId).classList.add('active');
         }
 
-        function startBombGame() {
-            showScreen('screen-bomb');
-            timeLeft = 30;
-            document.getElementById('timer-display').innerText = "00:30";
-            
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
-                document.getElementById('timer-display').innerText = `00:${seconds}`;
-
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    explodeBomb();
-                }
-            }, 1000);
+        function startLevels() {
+            currentLevelIndex = 0;
+            loadLevel(currentLevelIndex);
+            showScreen('screen-game');
         }
 
-        function defuse(isCorrect) {
-            clearInterval(timerInterval);
-            if (isCorrect) {
-                document.getElementById('result-content').innerHTML = `
-                    <h1 style="color: var(--accent-cyan); font-size: 3rem;">🎉 عاش يا أبطال!</h1>
-                    <div class="status-msg">تم تفكيك القنبلة بنجاح بنسبة! 💥❌</div>
-                    <p>أنقذتوا المكان في أخر لحظة!</p>
-                `;
-            } else {
-                explodeBomb();
+        function loadLevel(index) {
+            const data = levels[index];
+            document.getElementById('level-indicator').innerText = `المستوى ${data.level} / 10`;
+            document.getElementById('level-title').innerText = data.title;
+            document.getElementById('challenge-question').innerText = data.question;
+            document.getElementById('user-answer').value = '';
+        }
+
+        function checkAnswer() {
+            const userAns = document.getElementById('user-answer').value.trim();
+            const correctAns = levels[currentLevelIndex].answer;
+
+            if (!userAns) {
+                alert("اكتبي أو اكتب إجابتك الأول!");
+                return;
             }
-            showScreen('screen-result');
-        }
 
-        function explodeBomb() {
-            document.getElementById('result-content').innerHTML = `
-                <h1 style="color: var(--danger-red); font-size: 3rem;">💥 بومممممم!</h1>
-                <div class="status-msg">القنبلة فرقعت للأسف! 😈</div>
-                <p>اخترتوا السلك الغلط أو الوقت خلص عليكوا!</p>
-            `;
-            showScreen('screen-result');
+            // التأكد من الإجابة (تغاضي عن الاختلافات البسيطة)
+            if (userAns.includes(correctAns) || correctAns.includes(userAns)) {
+                currentLevelIndex++;
+                if (currentLevelIndex < levels.length) {
+                    alert("👏 إجابة صحيحة! تم فك الجزء الأول، انتقلت للمستوى التالي..");
+                    loadLevel(currentLevelIndex);
+                } else {
+                    showScreen('screen-victory');
+                }
+            } else {
+                alert("❌ إجابة خاطئة! شفرة القنبلة لم تُفك بعد، حاول مرة أخرى بتركيز أكبر!");
+            }
         }
 
         function resetGame() {
-            showScreen('screen-lobby');
+            showScreen('screen-intro');
         }
     </script>
 </body>
